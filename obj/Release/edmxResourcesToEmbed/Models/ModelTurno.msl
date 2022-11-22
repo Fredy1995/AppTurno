@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="dbTuturnoModelStoreContainer" CdmEntityContainer="dbTuturnoEntities">
+    <EntitySetMapping Name="Analistas">
+      <EntityTypeMapping TypeName="dbTuturnoModel.Analistas">
+        <MappingFragment StoreEntitySet="Analistas">
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="idAnalista" ColumnName="idAnalista" />
+          <ScalarProperty Name="NombreCompleto" ColumnName="NombreCompleto" />
+          <ScalarProperty Name="Turno" ColumnName="Turno" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

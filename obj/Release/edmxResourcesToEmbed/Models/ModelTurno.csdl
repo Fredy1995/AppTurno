@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="dbTuturnoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Analistas">
+    <Key>
+      <PropertyRef Name="idAnalista" />
+    </Key>
+    <Property Name="idAnalista" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NombreCompleto" Type="String" MaxLength="350" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Turno" Type="Int32" Nullable="false" />
+    <Property Name="Fecha" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityContainer Name="dbTuturnoEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Analistas" EntityType="Self.Analistas" />
+  </EntityContainer>
+</Schema>
