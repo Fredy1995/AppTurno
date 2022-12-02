@@ -89,6 +89,11 @@ namespace Tuturno.Controllers
             return View(data);
         }
 
+        public ActionResult Index2()
+        {
+            return View();
+        }
+
         public void ActualizaTurnoAutomatico()
         {
             List<Analistas> listaA = new List<Analistas>();

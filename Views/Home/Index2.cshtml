@@ -1,0 +1,113 @@
+﻿
+@{
+    ViewBag.Title = "Index2";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Vista para Mujeres XD</h2>
+
+
+
+<!-- The Modal Administrar Mujeres -->
+<div class="modal fade" id="ModalAdministrarMujeres">
+    <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header text-center">
+                <h4 class="modal-title text-center">Administrar Analistas Mujeres</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body text-center">
+                <form method="post" action="Home/Index">
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control" placeholder="Ingresa analista 1" name="analista1">
+                        </div>
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control" placeholder="Ingresa analista 2" name="analista2" />
+                        </div>
+                        <div class="col-sm-2">
+                            <input type="submit" name="btnagregar" class="btn btn-primary" value="Agregar" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control" placeholder="ID analista" name="idAnalistas">
+                        </div>
+                        <div class="col-sm-5">
+
+                        </div>
+                        <div class="col-sm-2">
+                            <input type="submit" name="btneliminar" class="btn btn-danger" value="Eliminar" />
+                        </div>
+                    </div>
+                </form>
+
+                <br />
+                <div class="table-responsive">
+                    @*@Html.Grid(Model).Columns(columns =>
+                        {
+                          columns.Add(c => c.idAnalista).Titled("ID Analista");
+                          columns.Add(c => c.NombreCompleto).Titled("Nombre completo");
+                        })*@
+                </div>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-- The Modal Ajustar Analistas Mujeres-->
+<div class="modal fade" id="ModalAjustarMujeres">
+    <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header text-center">
+                <h4 class="modal-title text-center">Ajustar Turno Mujeres</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body text-center">
+                <form method="post" action="Home/Index2">
+                    <div class="row">
+                        <div class="col">
+                            <input type="text" class="form-control" placeholder="ID analistas" name="idAnalistaActualizar">
+                        </div>
+                        <div class="col">
+                            <input type="submit" name="btnactualizar" class="btn btn-primary" value="Actualizar" />
+                        </div>
+                    </div>
+                </form>
+
+                <br />
+                <div class="table-responsive">
+                    @*@Html.Grid(Model).Columns(columns =>
+                        {
+                            columns.Add(c => c.idAnalista).Titled("ID Analista");
+                            columns.Add(c => c.NombreCompleto).Titled("Nombre completo");
+                            columns.Add(c => c.Turno).Titled("Turno");
+                        })*@
+                </div>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+
+        </div>
+    </div>
+</div>

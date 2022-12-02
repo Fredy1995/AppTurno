@@ -26,5 +26,6 @@ namespace Tuturno.Models
         }
     
         public virtual DbSet<Analistas> Analistas { get; set; }
+        public virtual DbSet<AnalistasM> AnalistasM { get; set; }
     }
 }

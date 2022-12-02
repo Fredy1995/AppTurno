@@ -14,8 +14,19 @@
           <Property Name="Turno" Type="int" Nullable="false" />
           <Property Name="Fecha" Type="datetime" />
         </EntityType>
+        <EntityType Name="AnalistasM">
+          <Key>
+            <PropertyRef Name="idAnalistasM" />
+          </Key>
+          <Property Name="idAnalistasM" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NombreCompleto1" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="NombreCompleto2" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Turno" Type="int" Nullable="false" />
+          <Property Name="Fecha" Type="datetime" />
+        </EntityType>
         <EntityContainer Name="dbTuturnoModelStoreContainer">
           <EntitySet Name="Analistas" EntityType="Self.Analistas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AnalistasM" EntityType="Self.AnalistasM" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -32,7 +43,18 @@
         </EntityType>
         <EntityContainer Name="dbTuturnoEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Analistas" EntityType="Self.Analistas" />
+          <EntitySet Name="AnalistasM" EntityType="dbTuturnoModel.AnalistasM" />
         </EntityContainer>
+        <EntityType Name="AnalistasM">
+          <Key>
+            <PropertyRef Name="idAnalistasM" />
+          </Key>
+          <Property Name="idAnalistasM" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NombreCompleto1" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="NombreCompleto2" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Turno" Type="Int32" Nullable="false" />
+          <Property Name="Fecha" Type="DateTime" Precision="3" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -46,6 +68,17 @@
                 <ScalarProperty Name="idAnalista" ColumnName="idAnalista" />
                 <ScalarProperty Name="NombreCompleto" ColumnName="NombreCompleto" />
                 <ScalarProperty Name="Turno" ColumnName="Turno" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AnalistasM">
+            <EntityTypeMapping TypeName="dbTuturnoModel.AnalistasM">
+              <MappingFragment StoreEntitySet="AnalistasM">
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Turno" ColumnName="Turno" />
+                <ScalarProperty Name="NombreCompleto2" ColumnName="NombreCompleto2" />
+                <ScalarProperty Name="NombreCompleto1" ColumnName="NombreCompleto1" />
+                <ScalarProperty Name="idAnalistasM" ColumnName="idAnalistasM" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
