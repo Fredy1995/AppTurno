@@ -1,2 +1,4 @@
 .vs
 obj
+Web.config
+Models/ModelTurno.edmx
