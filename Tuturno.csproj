@@ -127,7 +127,11 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\analista.cs" />
+    <Compile Include="Models\analistam.cs" />
     <Compile Include="Models\Analistas.cs">
+      <DependentUpon>ModelTurno.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AnalistasM.cs">
       <DependentUpon>ModelTurno.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ModelTurno.Context.cs">

@@ -1,10 +1,54 @@
-﻿
+﻿@model IEnumerable<Tuturno.Models.AnalistasM>
+@using GridMvc.Html
 @{
     ViewBag.Title = "Index2";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Vista para Mujeres XD</h2>
+<div class="mt-2 bg-primary text-white rounded text-center animate__animated animate__backInDown">
+    <h1>ROL DE LIMPIEZA REFRIGERADOR Y MICROONDAS @DateTime.Now.Year</h1>
+
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <div class="col-md-12 text-white rounded text-center animate__animated animate__bounceInLeft" style="background-color: #CB00EC;">
+            <h1>Analistas</h1>
+        </div>
+
+        <div class="col-md-12 rounded text-center animate__animated animate__bounceInUp" style="background-color: #F5B9FB;">
+            <div class="table-responsive">
+
+                @Html.Grid(Model).Columns(columns =>
+           {
+               columns.Add(c => c.NombreCompleto1).Titled("Nombre completo");
+               columns.Add(c => c.NombreCompleto2).Titled("Nombre completo");
+               columns.Add(c => c.Turno).Titled("Ronda");
+           })
+
+
+            </div>
+        </div>
+
+    </div>
+    <div class="col-md-8">
+        <div class="col-md-12 rounded text-center animate__animated animate__bounceInRight" style="color: #CB00EC; background-color: #26FDC9; height: 100px; display: flex; justify-content: center; align-items: center; border-style: dotted; border-width: thick;">
+            @{
+                string nombre1 = Model.ToList().Where(c => c.Turno > 0).Select(a => a.NombreCompleto1).FirstOrDefault();
+                string nombre2 = Model.ToList().Where(c => c.Turno > 0).Select(a => a.NombreCompleto2).FirstOrDefault();
+                <h1 style="">@nombre1 & @nombre2</h1>
+            }
+
+        </div>
+        <div class="col-sm-3 rounded text-center"></div>
+        <div class="col-md-12 rounded text-center animate__animated animate__fadeInRightBig" style="margin-top: 10px; height: 366px; border: solid #CB00EC; display: flex; justify-content: center; align-items: center; ">
+
+            <div class="row"><h1 style="color: #CB00EC; -webkit-text-stroke: 1px #26FDC9; font-size: 60px; ">@DateTime.Now.ToLongDateString()</h1></div>
+            <div class="row">
+                <img src="~/imagenes/limpiar2.jpg" />
+            </div>
+        </div>
+    </div>
+</div>
 
 
 

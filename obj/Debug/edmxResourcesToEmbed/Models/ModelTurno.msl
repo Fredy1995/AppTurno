@@ -11,5 +11,16 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="AnalistasM">
+      <EntityTypeMapping TypeName="dbTuturnoModel.AnalistasM">
+        <MappingFragment StoreEntitySet="AnalistasM">
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="Turno" ColumnName="Turno" />
+          <ScalarProperty Name="NombreCompleto2" ColumnName="NombreCompleto2" />
+          <ScalarProperty Name="NombreCompleto1" ColumnName="NombreCompleto1" />
+          <ScalarProperty Name="idAnalistasM" ColumnName="idAnalistasM" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

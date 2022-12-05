@@ -89,9 +89,80 @@ namespace Tuturno.Controllers
             return View(data);
         }
 
-        public ActionResult Index2()
+        public ActionResult Index2(FormCollection objetoForm)
         {
-            return View();
+            ActualizaTurnoAutomatico();
+            using (var dbContextTransaction = _db.Database.BeginTransaction())
+            {
+                try
+                {
+                    if (objetoForm["btnagregar"] != null)
+                    {
+                        var an = new AnalistasM()
+                        {
+
+                            NombreCompleto1 = objetoForm["analista1"],
+                            NombreCompleto2 = objetoForm["analista2"],
+                            Turno = 0
+                        };
+
+                        _db.AnalistasM.Add(an);
+                        _db.SaveChanges();
+                        dbContextTransaction.Commit();
+                        return RedirectToAction("Index2");
+                    }
+                    else if (objetoForm["btneliminar"] != null)
+                    {
+                        int idA = Convert.ToInt32(objetoForm["idAnalistaM"].ToString());
+                        var an = _db.AnalistasM.SingleOrDefault(c => c.idAnalistasM == idA);
+                        if (an != null)
+                        {
+                            _db.AnalistasM.Remove(an);
+                            _db.SaveChanges();
+                            dbContextTransaction.Commit();
+                            return RedirectToAction("Index2");
+                        }
+                    }
+                    else if (objetoForm["btnactualizar"] != null)
+                    {
+                        int idA = Convert.ToInt32(objetoForm["idAnalistaActualizar"].ToString());
+                        var an = _db.AnalistasM.SingleOrDefault(c => c.idAnalistasM == idA);
+
+                        if (an != null)
+                        {
+                            an.Turno = 1;
+                            an.Fecha = DateTime.Now;
+                            _db.SaveChanges();
+
+                            foreach (var item in _db.AnalistasM.ToList())
+                            {
+                                int idAList = Convert.ToInt32(item.idAnalistasM);
+                                if (idAList != idA)
+                                {
+                                    var idlist = _db.AnalistasM.SingleOrDefault(c => c.idAnalistasM == idAList);
+                                    if (idlist != null)
+                                    {
+                                        idlist.Turno = 0;
+                                        idlist.Fecha = null;
+                                        _db.SaveChanges();
+
+                                    }
+                                }
+                            }
+                        }
+
+                        dbContextTransaction.Commit();
+                        return RedirectToAction("Index2");
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    dbContextTransaction.Rollback();
+                }
+            }
+            var data = _db.AnalistasM.ToList();
+            return View(data);
         }
 
         public void ActualizaTurnoAutomatico()
