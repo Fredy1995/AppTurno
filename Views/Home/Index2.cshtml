@@ -1,5 +1,6 @@
 ﻿@model IEnumerable<Tuturno.Models.AnalistasM>
 @using GridMvc.Html
+@using System.Globalization;
 @{
     ViewBag.Title = "Index2";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -11,11 +12,14 @@
 </div>
 <div class="row">
     <div class="col-md-4">
-        <div class="col-md-12 text-white rounded text-center animate__animated animate__bounceInLeft" style="background-color: #CB00EC;">
+        @{
+            int totalM = @Model.ToList().Where(c => c.NombreCompleto1 != "").Count() + @Model.ToList().Where(c => c.NombreCompleto2 != "").Count();
+        }
+        <div class="col-md-12 text-white rounded text-center animate__animated animate__bounceInLeft" style="background-color: #750AE7;" data-bs-toggle="tooltip" title="@totalM  Analistas registrados">
             <h1>Analistas</h1>
         </div>
 
-        <div class="col-md-12 rounded text-center animate__animated animate__bounceInUp" style="background-color: #F5B9FB;">
+        <div class="col-md-12 rounded text-center animate__animated animate__bounceInUp" style="background-color: #AFAEFD; ">
             <div class="table-responsive">
 
                 @Html.Grid(Model).Columns(columns =>
@@ -31,18 +35,24 @@
 
     </div>
     <div class="col-md-8">
-        <div class="col-md-12 rounded text-center animate__animated animate__bounceInRight" style="color: #CB00EC; background-color: #26FDC9; height: 100px; display: flex; justify-content: center; align-items: center; border-style: dotted; border-width: thick;">
+        <div class="col-md-12 rounded text-center animate__animated animate__bounceInRight" style="color:#CB00EC  ; background-color: #AFAEFD; height: 100px; display: flex; justify-content: center; align-items: center; border-style: dotted; border-width: thick;">
             @{
                 string nombre1 = Model.ToList().Where(c => c.Turno > 0).Select(a => a.NombreCompleto1).FirstOrDefault();
                 string nombre2 = Model.ToList().Where(c => c.Turno > 0).Select(a => a.NombreCompleto2).FirstOrDefault();
-                <h1 style="">@nombre1 & @nombre2</h1>
+                <h1 style=" color: #750AE7;">@nombre1 & @nombre2</h1>
             }
 
         </div>
         <div class="col-sm-3 rounded text-center"></div>
         <div class="col-md-12 rounded text-center animate__animated animate__fadeInRightBig" style="margin-top: 10px; height: 366px; border: solid #CB00EC; display: flex; justify-content: center; align-items: center; ">
 
-            <div class="row"><h1 style="color: #CB00EC; -webkit-text-stroke: 1px #26FDC9; font-size: 60px; ">@DateTime.Now.ToLongDateString()</h1></div>
+            <div class="row">
+                @{
+                    DateTime fecha = Convert.ToDateTime(Model.ToList().Where(c => c.Turno > 0).Select(f => f.Fecha).FirstOrDefault());
+                    <h1 style="color: #CB00EC; -webkit-text-stroke: 1px #26FDC9; font-size: 60px; ">@fecha.ToLongDateString()</h1>
+                }
+
+            </div>
             <div class="row">
                 <img src="~/imagenes/limpiar2.jpg" />
             </div>
@@ -65,7 +75,7 @@
 
             <!-- Modal body -->
             <div class="modal-body text-center">
-                <form method="post" action="Home/Index">
+                <form method="post" action="Index2">
                     <div class="row">
                         <div class="col-sm-5">
                             <input type="text" class="form-control" placeholder="Ingresa analista 1" name="analista1">
@@ -92,11 +102,12 @@
 
                 <br />
                 <div class="table-responsive">
-                    @*@Html.Grid(Model).Columns(columns =>
-                        {
-                          columns.Add(c => c.idAnalista).Titled("ID Analista");
-                          columns.Add(c => c.NombreCompleto).Titled("Nombre completo");
-                        })*@
+                    @Html.Grid(Model).Columns(columns =>
+               {
+                   columns.Add(c => c.idAnalistasM).Titled("ID");
+                   columns.Add(c => c.NombreCompleto1).Titled("Nombre completo");
+                   columns.Add(c => c.NombreCompleto2).Titled("Nombre completo");
+               })
                 </div>
             </div>
 
@@ -125,7 +136,7 @@
 
             <!-- Modal body -->
             <div class="modal-body text-center">
-                <form method="post" action="Home/Index2">
+                <form method="post" action="Index2">
                     <div class="row">
                         <div class="col">
                             <input type="text" class="form-control" placeholder="ID analistas" name="idAnalistaActualizar">
@@ -138,12 +149,12 @@
 
                 <br />
                 <div class="table-responsive">
-                    @*@Html.Grid(Model).Columns(columns =>
-                        {
-                            columns.Add(c => c.idAnalista).Titled("ID Analista");
-                            columns.Add(c => c.NombreCompleto).Titled("Nombre completo");
-                            columns.Add(c => c.Turno).Titled("Turno");
-                        })*@
+                    @Html.Grid(Model).Columns(columns =>
+                {
+                    columns.Add(c => c.idAnalistasM).Titled("ID");
+                    columns.Add(c => c.NombreCompleto1).Titled("Nombre completo");
+                    columns.Add(c => c.NombreCompleto2).Titled("Nombre completo");
+                })
                 </div>
             </div>
 
