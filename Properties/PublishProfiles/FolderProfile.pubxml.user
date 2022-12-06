@@ -4,8 +4,8 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 -->
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <_PublishTargetUrl>C:\inetpub\wwwroot\Tuturno-pruebas</_PublishTargetUrl>
-    <History>True|2022-12-06T18:33:56.2635170Z;True|2022-11-17T17:53:59.0604008-06:00;False|2022-11-17T17:53:44.1153964-06:00;</History>
+    <_PublishTargetUrl>C:\inetpub\wwwroot\Tuturno</_PublishTargetUrl>
+    <History>True|2022-12-06T22:35:08.6973798Z;True|2022-12-06T12:33:56.2635170-06:00;True|2022-11-17T17:53:59.0604008-06:00;False|2022-11-17T17:53:44.1153964-06:00;</History>
   </PropertyGroup>
   <ItemGroup>
     <File Include="bin/Antlr3.Runtime.dll">
@@ -153,10 +153,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>05/27/2022 23:42:50</publishTime>
     </File>
     <File Include="bin/Tuturno.dll">
-      <publishTime>12/06/2022 12:33:44</publishTime>
+      <publishTime>12/06/2022 16:35:04</publishTime>
     </File>
     <File Include="bin/Tuturno.pdb">
-      <publishTime>12/06/2022 12:33:44</publishTime>
+      <publishTime>12/06/2022 16:35:04</publishTime>
     </File>
     <File Include="bin/WebGrease.dll">
       <publishTime>01/23/2014 12:57:34</publishTime>
@@ -375,10 +375,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>11/14/2022 17:50:28</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>12/05/2022 18:00:42</publishTime>
+      <publishTime>12/06/2022 13:03:58</publishTime>
     </File>
     <File Include="Views/Home/Index2.cshtml">
-      <publishTime>12/06/2022 12:06:38</publishTime>
+      <publishTime>12/06/2022 13:11:26</publishTime>
     </File>
     <File Include="Views/Shared/Error.cshtml">
       <publishTime>11/14/2022 17:50:03</publishTime>
@@ -390,7 +390,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>11/16/2022 14:29:50</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>12/06/2022 10:30:45</publishTime>
+      <publishTime>12/06/2022 16:34:16</publishTime>
     </File>
     <File Include="Views/Web.config">
       <publishTime>11/14/2022 17:50:03</publishTime>

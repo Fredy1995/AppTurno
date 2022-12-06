@@ -127,6 +127,8 @@ namespace Tuturno.Controllers
                         int idA = Convert.ToInt32(objetoForm["idAnalistaActualizar"].ToString());
                         var an = _db.AnalistasM.SingleOrDefault(c => c.idAnalistasM == idA);
 
+                        int IdAnalistaActual = _db.AnalistasM.Where(c => c.Turno > 0).Select(a => a.idAnalistasM).FirstOrDefault();
+                        var an2 = _db.AnalistasM.SingleOrDefault(c => c.idAnalistasM == IdAnalistaActual);
                         string analista1Actual = _db.AnalistasM.Where(c => c.Turno > 0).Select(a => a.NombreCompleto1).FirstOrDefault();
                         string analista2Actual = _db.AnalistasM.Where(c => c.Turno > 0).Select(a => a.NombreCompleto2).FirstOrDefault();
                         string analisita1Siguiente = _db.AnalistasM.Where(c => c.idAnalistasM == idA).Select(a => a.NombreCompleto1).FirstOrDefault();
@@ -134,27 +136,16 @@ namespace Tuturno.Controllers
 
                         if (an != null)
                         {
-                            an.Turno = 1;
-                            an.Fecha = DateTime.Now;
+                            an.NombreCompleto1 = analista1Actual;
+                            an.NombreCompleto2 = analista2Actual;
+                            an2.NombreCompleto1 = analisita1Siguiente;
+                            an2.NombreCompleto2 = analisita2Siguiente;
                             _db.SaveChanges();
 
-                            foreach (var item in _db.AnalistasM.ToList())
-                            {
-                                int idAList = Convert.ToInt32(item.idAnalistasM);
-                                if (idAList != idA)
-                                {
-                                    var idlist = _db.AnalistasM.SingleOrDefault(c => c.idAnalistasM == idAList);
-                                    if (idlist != null)
-                                    {
-                                        idlist.Turno = 0;
-                                        //idlist.Fecha = null;
-                                        _db.SaveChanges();
-                                    }
-                                } 
-                            }
+                            
                         }
 
-                        //dbContextTransaction.Commit();
+                        dbContextTransaction.Commit();
                         return RedirectToAction("Index2");
                     }
 

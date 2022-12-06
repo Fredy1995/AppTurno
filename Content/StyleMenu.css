@@ -11,7 +11,7 @@
     color: white;
     border-radius: 0 5px 5px 0;
     text-align:end;
-    z-index:1;
+ 
 }
 
     #mySidenav a:hover {
@@ -21,6 +21,7 @@
 #refri {
     top: 300px;
     background-color: #04AA6D;
+
 }
 
 #agua {
