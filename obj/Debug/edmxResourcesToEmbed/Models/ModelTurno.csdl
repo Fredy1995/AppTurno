@@ -11,5 +11,16 @@
   </EntityType>
   <EntityContainer Name="dbTuturnoEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Analistas" EntityType="Self.Analistas" />
+    <EntitySet Name="AnalistasM" EntityType="dbTuturnoModel.AnalistasM" />
   </EntityContainer>
+  <EntityType Name="AnalistasM">
+    <Key>
+      <PropertyRef Name="idAnalistasM" />
+    </Key>
+    <Property Name="idAnalistasM" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NombreCompleto1" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="NombreCompleto2" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Turno" Type="Int32" Nullable="false" />
+    <Property Name="Fecha" Type="DateTime" Precision="3" />
+  </EntityType>
 </Schema>

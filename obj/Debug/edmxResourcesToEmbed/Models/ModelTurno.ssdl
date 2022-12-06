@@ -9,7 +9,18 @@
     <Property Name="Turno" Type="int" Nullable="false" />
     <Property Name="Fecha" Type="datetime" />
   </EntityType>
+  <EntityType Name="AnalistasM">
+    <Key>
+      <PropertyRef Name="idAnalistasM" />
+    </Key>
+    <Property Name="idAnalistasM" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NombreCompleto1" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="NombreCompleto2" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="Turno" Type="int" Nullable="false" />
+    <Property Name="Fecha" Type="datetime" />
+  </EntityType>
   <EntityContainer Name="dbTuturnoModelStoreContainer">
     <EntitySet Name="Analistas" EntityType="Self.Analistas" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AnalistasM" EntityType="Self.AnalistasM" Schema="dbo" store:Type="Tables" />
   </EntityContainer>
 </Schema>

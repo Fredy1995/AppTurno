@@ -1,5 +1,5 @@
-﻿@model IEnumerable<Tuturno.Models.Analistas>
-@using GridMvc.Html
+﻿@*@model IEnumerable<Tuturno.Models.Analistas>
+@using GridMvc.Html*@
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,12 +13,13 @@
     <script src="~/Scripts/jquery-3.6.1.js"></script>
     <script src="~/Scripts/autorizacionjs.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link href="~/Content/StyleMenu.css" rel="stylesheet" />
 </head>
 <body>
 
     <nav class="navbar navbar-expand-sm navbar-dark " style="background-color: #00B2FF;">
         <div class="container-fluid">
-            <div class="navbar-brand" href="javascript:void(0)"> <img src="~/imagenes/garrafon.png" alt="Logo" style="width:40px;" class="rounded-pill"></div>
+            <div class="navbar-brand" href="javascript:void(0)"> <img src="~/imagenes/turno.jpg" alt="Logo" style="width:40px;" class="rounded-pill"></div>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -38,12 +39,17 @@
             </div>
         </div>
     </nav>
+    <div id="mySidenav" class="sidenav animate__animated animate__fadeInRight">
+        <a href="@Url.Action("Index2","Home")" id="refri" style=" background-color: #750AE7;">Refri&Micro</a>
+        <a href="@Url.Action("Index","Home")" id="agua" class=" bg-info">Agua</a>
+    </div>
 
     <div class="container body-content">
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - Tecnologías .NET - AF - V. 1.0.17.11.2022</p>
+            @*<p>&copy; @DateTime.Now.Year - Tecnologías .NET - AF - V. 1.0.17.11.2022</p> -Solo tenia el calendario de agua*@
+            <p>&copy; @DateTime.Now.Year - Tecnologías .NET - AF - V. 2.0.8.12.2022</p>
         </footer>
     </div>
     <!-- The Modal -->
@@ -82,7 +88,13 @@
         </div>
     </div>
 
-   
+    <script>
+        // Initialize tooltips
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        })
+    </script>
 
 </body>
 </html>

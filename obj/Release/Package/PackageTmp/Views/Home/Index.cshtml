@@ -5,26 +5,26 @@
 
 }
 
-<div class="mt-2 bg-primary text-white rounded text-center animate__animated animate__backInDown" >
+<div class="mt-2 bg-primary text-white rounded text-center animate__animated animate__backInDown">
     <h1>ROL DE GARRAFÓN @DateTime.Now.Year</h1>
 
 </div>
 <div class="row">
     <div class="col-md-4">
-        <div class="col-md-12 bg-info text-white rounded text-center animate__animated animate__bounceInLeft" >
+        <div class="col-md-12 bg-info text-white rounded text-center animate__animated animate__bounceInLeft">
             <h1>Analistas</h1>
         </div>
 
         <div class="col-md-12 rounded text-center animate__animated animate__bounceInUp" style="background-color: #B9E7FB;">
             <div class="table-responsive">
-              
-                    @Html.Grid(Model).Columns(columns =>
-        {
-          columns.Add(c => c.NombreCompleto).Titled("Nombre completo");
-          columns.Add(c => c.Turno).Titled("Ronda");
-        })
-                
-            
+
+                @Html.Grid(Model).Columns(columns =>
+    {
+      columns.Add(c => c.NombreCompleto).Titled("Nombre completo");
+      columns.Add(c => c.Turno).Titled("Ronda");
+    })
+
+
             </div>
         </div>
 
@@ -39,11 +39,105 @@
         </div>
         <div class="col-sm-3 rounded text-center"></div>
         <div class="col-md-12 rounded text-center animate__animated animate__fadeInRightBig" style="margin-top: 10px; height: 366px; border: solid #00B2FF; display: flex; justify-content: center; align-items: center; ">
-            
+
             <div class="row"><h1 style="color: #3D00EC; -webkit-text-stroke: 1px #26FDC9; font-size: 60px; ">@DateTime.Now.ToLongDateString()</h1></div>
             <div class="row">
                 <img src="~/imagenes/cargandoGarrafon.jpg" />
             </div>
+        </div>
+    </div>
+</div>
+<!-- The Modal Administrar Hombres -->
+<div class="modal fade" id="ModalAdministrarHombres">
+    <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header text-center">
+                <h4 class="modal-title text-center">Administrar Analistas</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body text-center">
+                <form method="post" action="Home/Index">
+                    <div class="row">
+                        <div class="col">
+                            <input type="text" class="form-control" placeholder="Ingresa nombre completo" name="nombreCompleto">
+                        </div>
+                        <div class="col">
+                            <input type="submit" name="btnagregar" class="btn btn-primary" value="Agregar" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <input type="text" class="form-control" placeholder="ID analista" name="idAnalista">
+                        </div>
+                        <div class="col">
+                            <input type="submit" name="btneliminar" class="btn btn-danger" value="Eliminar" />
+                        </div>
+                    </div>
+                </form>
+
+                <br />
+                <div class="table-responsive">
+                    @Html.Grid(Model).Columns(columns =>
+                        {
+                          columns.Add(c => c.idAnalista).Titled("ID Analista");
+                          columns.Add(c => c.NombreCompleto).Titled("Nombre completo");
+                        })
+                </div>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- The Modal Ajustar Analistas hombres-->
+<div class="modal fade" id="ModalAjustarHombres">
+    <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header text-center">
+                <h4 class="modal-title text-center">Ajustar Turno</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body text-center">
+                <form method="post" action="Home/Index">
+                    <div class="row">
+                        <div class="col">
+                            <input type="text" class="form-control" placeholder="ID analista" name="idAnalistaActualizar">
+                        </div>
+                        <div class="col">
+                            <input type="submit" name="btnactualizar" class="btn btn-primary" value="Actualizar" />
+                        </div>
+                    </div>
+                </form>
+
+                <br />
+                <div class="table-responsive">
+                    @Html.Grid(Model).Columns(columns =>
+                        {
+                            columns.Add(c => c.idAnalista).Titled("ID Analista");
+                            columns.Add(c => c.NombreCompleto).Titled("Nombre completo");
+                            columns.Add(c => c.Turno).Titled("Turno");
+                        })
+                </div>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+
         </div>
     </div>
 </div>

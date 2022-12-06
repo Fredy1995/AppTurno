@@ -129,25 +129,25 @@
     <Compile Include="Models\analista.cs" />
     <Compile Include="Models\analistam.cs" />
     <Compile Include="Models\Analistas.cs">
-      <DependentUpon>ModelTurno.tt</DependentUpon>
+      <DependentUpon>ModelTuturno.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AnalistasM.cs">
-      <DependentUpon>ModelTurno.tt</DependentUpon>
+      <DependentUpon>ModelTuturno.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ModelTurno.Context.cs">
+    <Compile Include="Models\ModelTuturno.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ModelTurno.Context.tt</DependentUpon>
+      <DependentUpon>ModelTuturno.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ModelTurno.cs">
+    <Compile Include="Models\ModelTuturno.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ModelTurno.tt</DependentUpon>
+      <DependentUpon>ModelTuturno.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ModelTurno.Designer.cs">
+    <Compile Include="Models\ModelTuturno.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ModelTurno.edmx</DependentUpon>
+      <DependentUpon>ModelTuturno.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -169,20 +169,22 @@
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\Gridmvc.css" />
+    <Content Include="Content\StyleMenu.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="imagenes\cargandoGarrafon.jpg" />
-    <Content Include="imagenes\garrafon.png" />
-    <Content Include="Models\ModelTurno.Context.tt">
+    <Content Include="imagenes\limpiar2.jpg" />
+    <Content Include="imagenes\turno.jpg" />
+    <Content Include="Models\ModelTuturno.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>ModelTurno.Context.cs</LastGenOutput>
-      <DependentUpon>ModelTurno.edmx</DependentUpon>
+      <DependentUpon>ModelTuturno.edmx</DependentUpon>
+      <LastGenOutput>ModelTuturno.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\ModelTurno.tt">
+    <Content Include="Models\ModelTuturno.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ModelTurno.edmx</DependentUpon>
-      <LastGenOutput>ModelTurno.cs</LastGenOutput>
+      <DependentUpon>ModelTuturno.edmx</DependentUpon>
+      <LastGenOutput>ModelTuturno.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\autorizacionjs.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
@@ -213,14 +215,14 @@
     <Content Include="Content\bootstrap-grid.rtl.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
-    <EntityDeploy Include="Models\ModelTurno.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ModelTurno.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\ModelTurno.edmx.diagram">
-      <DependentUpon>ModelTurno.edmx</DependentUpon>
-    </Content>
     <Content Include="Grid.mvc.readme" />
+    <EntityDeploy Include="Models\ModelTuturno.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ModelTuturno.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\ModelTuturno.edmx.diagram">
+      <DependentUpon>ModelTuturno.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.6.1.intellisense.js" />
     <Content Include="Scripts\gridmvc.js" />
     <Content Include="Scripts\gridmvc.lang.ru.js" />

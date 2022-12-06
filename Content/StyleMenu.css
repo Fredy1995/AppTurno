@@ -1,0 +1,39 @@
+﻿body {
+}
+#mySidenav a {
+    position: absolute;
+    left: -80px;
+    transition: 0.3s;
+    padding: 15px;
+    width: 150px;
+    text-decoration: none;
+    font-size: 20px;
+    color: white;
+    border-radius: 0 5px 5px 0;
+    text-align:end;
+    z-index:1;
+}
+
+    #mySidenav a:hover {
+        left: 0;
+    }
+
+#refri {
+    top: 300px;
+    background-color: #04AA6D;
+}
+
+#agua {
+    top: 400px;
+    background-color: ;
+}
+
+#projects {
+    top: 140px;
+    background-color: #f44336;
+}
+
+#contact {
+    top: 200px;
+    background-color: #555
+}

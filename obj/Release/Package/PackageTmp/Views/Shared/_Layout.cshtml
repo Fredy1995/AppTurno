@@ -1,5 +1,5 @@
-﻿@model IEnumerable<Tuturno.Models.Analistas>
-@using GridMvc.Html
+﻿@*@model IEnumerable<Tuturno.Models.Analistas>
+@using GridMvc.Html*@
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,19 +13,20 @@
     <script src="~/Scripts/jquery-3.6.1.js"></script>
     <script src="~/Scripts/autorizacionjs.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link href="~/Content/StyleMenu.css" rel="stylesheet" />
 </head>
 <body>
 
     <nav class="navbar navbar-expand-sm navbar-dark " style="background-color: #00B2FF;">
         <div class="container-fluid">
-            <div class="navbar-brand" href="javascript:void(0)"> <img src="~/imagenes/garrafon.png" alt="Logo" style="width:40px;" class="rounded-pill"></div>
+            <div class="navbar-brand" href="javascript:void(0)"> <img src="~/imagenes/turno.jpg" alt="Logo" style="width:40px;" class="rounded-pill"></div>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="mynavbar">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <b> <a class="nav-link"  style="color:white;  text-shadow: 2px 2px 2px gray;">TUTURNO-XD</a></b>
+                        <b> <a class="nav-link" style="color:white;  text-shadow: 2px 2px 2px gray;">TUTURNO-XD</a></b>
                     </li>
 
                 </ul>
@@ -38,12 +39,17 @@
             </div>
         </div>
     </nav>
+    <div id="mySidenav" class="sidenav animate__animated animate__fadeInRight">
+        <a href="@Url.Action("Index2","Home")" id="refri" style=" background-color: #750AE7;">Refri&Micro</a>
+        <a href="@Url.Action("Index","Home")" id="agua" class=" bg-info">Agua</a>
+    </div>
 
     <div class="container body-content">
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - Tecnologías .NET - AF - V. 1.0.17.11.2022</p>
+            @*<p>&copy; @DateTime.Now.Year - Tecnologías .NET - AF - V. 1.0.17.11.2022</p> -Solo tenia el calendario de agua*@
+            <p>&copy; @DateTime.Now.Year - Tecnologías .NET - AF - V. 2.0.8.12.2022</p>
         </footer>
     </div>
     <!-- The Modal -->
@@ -60,10 +66,13 @@
                 <!-- Modal body -->
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col">
+                        <div class="col-sm-5">
                             <input type="password" id="pwd" class="form-control" placeholder="Ingresa contraseña" name="password">
                         </div>
-                        <div class="col">
+                        <div class="col-sm-2">
+                            <input type="text" id="tTurno" class="form-control" placeholder="Tipo de turno" name="tipoTurno" />
+                        </div>
+                        <div class="col-sm-5">
                             <button type="button" id="btnConfirmar" class="btn btn-primary" onclick="autorizacion()">Confirmar</button>
                             @*<input type="submit" name="btnConfirmar" class="btn btn-primary" value="Confirmar" />*@
                         </div>
@@ -79,103 +88,7 @@
         </div>
     </div>
 
-    <!-- The Modal -->
-    <div class="modal fade" id="ModalAdministrar">
-        <div class="modal-dialog modal-dialog-scrollable">
-            <div class="modal-content">
-
-                <!-- Modal Header -->
-                <div class="modal-header text-center">
-                    <h4 class="modal-title text-center">Administrar Analistas</h4>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-
-                <!-- Modal body -->
-                <div class="modal-body text-center">
-                    <form method="post" action="Home/Index">
-                        <div class="row">
-                            <div class="col">
-                                <input type="text" class="form-control" placeholder="Ingresa nombre completo" name="nombreCompleto">
-                            </div>
-                            <div class="col">
-                                <input type="submit" name="btnagregar" class="btn btn-primary" value="Agregar" />
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                <input type="text" class="form-control" placeholder="ID analista" name="idAnalista">
-                            </div>
-                            <div class="col">
-                                <input type="submit" name="btneliminar" class="btn btn-danger" value="Eliminar" />
-                            </div>
-                        </div>
-                    </form>
-
-                    <br />
-                    <div class="table-responsive">
-                        @Html.Grid(Model).Columns(columns =>
-                    {
-                      columns.Add(c => c.idAnalista).Titled("ID Analista");
-                      columns.Add(c => c.NombreCompleto).Titled("Nombre completo");
-                    })
-                    </div>
-                </div>
-
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
-                </div>
-
-            </div>
-        </div>
-    </div>
 
 
-    <!-- The Modal -->
-    <div class="modal fade" id="ModalAjustar">
-        <div class="modal-dialog modal-dialog-scrollable">
-            <div class="modal-content">
-
-                <!-- Modal Header -->
-                <div class="modal-header text-center">
-                    <h4 class="modal-title text-center">Ajustar Turno</h4>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-
-                <!-- Modal body -->
-                <div class="modal-body text-center">
-                    <form method="post" action="Home/Index">
-                        <div class="row">
-                            <div class="col">
-                                <input type="text" class="form-control" placeholder="ID analista" name="idAnalistaActualizar">
-                            </div>
-                            <div class="col">
-                                <input type="submit" name="btnactualizar" class="btn btn-primary" value="Actualizar" />
-                            </div>
-                        </div>
-                    </form>
-
-                    <br />
-                    <div class="table-responsive">
-                        @Html.Grid(Model).Columns(columns =>
-                   {
-                       columns.Add(c => c.idAnalista).Titled("ID Analista");
-                       columns.Add(c => c.NombreCompleto).Titled("Nombre completo");
-                       columns.Add(c => c.Turno).Titled("Turno");
-                   })
-                    </div>
-                </div>
-
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
-                </div>
-
-            </div>
-        </div>
-    </div>
-    @*<script type="text/javascript">
-
-        </script>*@
 </body>
 </html>
