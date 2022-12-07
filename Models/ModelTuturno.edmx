@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="dbTuturnoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="dbTuturnoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Analistas">
           <Key>
             <PropertyRef Name="idAnalista" />
@@ -12,6 +12,14 @@
           <Property Name="idAnalista" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="NombreCompleto" Type="varchar" MaxLength="350" Nullable="false" />
           <Property Name="Turno" Type="int" Nullable="false" />
+          <Property Name="Fecha" Type="datetime" />
+        </EntityType>
+        <EntityType Name="AnalistasC">
+          <Key>
+            <PropertyRef Name="idAnalistasC" />
+          </Key>
+          <Property Name="idAnalistasC" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NombreCompleto" Type="varchar" MaxLength="250" Nullable="false" />
           <Property Name="Fecha" Type="datetime" />
         </EntityType>
         <EntityType Name="AnalistasM">
@@ -26,10 +34,10 @@
         </EntityType>
         <EntityContainer Name="dbTuturnoModelStoreContainer">
           <EntitySet Name="Analistas" EntityType="Self.Analistas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AnalistasC" EntityType="Self.AnalistasC" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AnalistasM" EntityType="Self.AnalistasM" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="dbTuturnoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -55,7 +63,16 @@
         <EntityContainer Name="dbTuturnoEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Analistas" EntityType="Self.Analistas" />
           <EntitySet Name="AnalistasM" EntityType="Self.AnalistasM" />
+          <EntitySet Name="AnalistasC" EntityType="dbTuturnoModel.AnalistasC" />
         </EntityContainer>
+        <EntityType Name="AnalistasC">
+          <Key>
+            <PropertyRef Name="idAnalistasC" />
+          </Key>
+          <Property Name="idAnalistasC" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NombreCompleto" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Fecha" Type="DateTime" Precision="3" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -80,6 +97,15 @@
                 <ScalarProperty Name="NombreCompleto2" ColumnName="NombreCompleto2" />
                 <ScalarProperty Name="Turno" ColumnName="Turno" />
                 <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AnalistasC">
+            <EntityTypeMapping TypeName="dbTuturnoModel.AnalistasC">
+              <MappingFragment StoreEntitySet="AnalistasC">
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="NombreCompleto" ColumnName="NombreCompleto" />
+                <ScalarProperty Name="idAnalistasC" ColumnName="idAnalistasC" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

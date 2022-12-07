@@ -6,7 +6,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="mt-2 bg-primary text-white rounded text-center animate__animated animate__backInDown">
+<div class="mt-2 rounded text-center animate__animated animate__backInDown" style="background-color: #EBEFF1;">
     <h1>ROL DE LIMPIEZA REFRIGERADOR Y MICROONDAS @DateTime.Now.Year</h1>
 
 </div>
@@ -15,11 +15,11 @@
         @{
             int totalM = @Model.ToList().Where(c => c.NombreCompleto1 != "").Count() + @Model.ToList().Where(c => c.NombreCompleto2 != "").Count();
         }
-        <div class="col-md-12 text-white rounded text-center animate__animated animate__bounceInLeft" style="background-color: #750AE7;" data-bs-toggle="tooltip" title="@totalM  Analistas registrados">
+        <div class="col-md-12 text-white rounded text-center animate__animated animate__bounceInLeft" style="background-color: #08AB98;" data-bs-toggle="tooltip" title="@totalM  Analistas registrados">
             <h1>Analistas</h1>
         </div>
 
-        <div class="col-md-12 rounded text-center animate__animated animate__bounceInUp" style="background-color: #AFAEFD; ">
+        <div class="col-md-12 rounded text-center animate__animated animate__bounceInUp" style="background-color: #C0EDE6; ">
             <div class="table-responsive">
 
                 @Html.Grid(Model).Columns(columns =>
@@ -35,26 +35,26 @@
 
     </div>
     <div class="col-md-8">
-        <div class="col-md-12 rounded text-center animate__animated animate__bounceInRight" style="color:#CB00EC  ; background-color: #AFAEFD; height: 100px; display: flex; justify-content: center; align-items: center; border-style: dotted; border-width: thick;">
+        <div class="col-md-12 rounded text-white text-center animate__animated animate__bounceInRight" style="background-color: #46B4A9; height: 100px; display: flex; justify-content: center; align-items: center; border-style: dotted; border-width: thick;">
             @{
                 string nombre1 = Model.ToList().Where(c => c.Turno > 0).Select(a => a.NombreCompleto1).FirstOrDefault();
                 string nombre2 = Model.ToList().Where(c => c.Turno > 0).Select(a => a.NombreCompleto2).FirstOrDefault();
-                <h1 style=" color: #750AE7;">@nombre1 & @nombre2</h1>
+                <h1>@nombre1 & @nombre2</h1>
             }
 
         </div>
         <div class="col-sm-3 rounded text-center"></div>
-        <div class="col-md-12 rounded text-center animate__animated animate__fadeInRightBig" style="margin-top: 10px; height: 366px; border: solid #CB00EC; display: flex; justify-content: center; align-items: center; ">
+        <div class="col-md-12 rounded text-center animate__animated animate__fadeInRightBig" style="margin-top: 10px; height: 366px; border: solid #46B4A9; display: flex; justify-content: center; align-items: center; ">
 
             <div class="row">
                 @{
                     DateTime fecha = Convert.ToDateTime(Model.ToList().Where(c => c.Turno > 0).Select(f => f.Fecha).FirstOrDefault());
-                    <h1 style="color: #CB00EC; -webkit-text-stroke: 1px #26FDC9; font-size: 60px; ">@fecha.ToLongDateString()</h1>
+                    <h1 style="color: #46B4A9; -webkit-text-stroke: 1px #C0EDE6; font-size: 60px; ">@fecha.ToLongDateString()</h1>
                 }
 
             </div>
             <div class="row">
-                <img src="~/imagenes/limpiar2.jpg" />
+                <img src="~/imagenes/limpieza.jpg" />
             </div>
         </div>
     </div>

@@ -159,6 +159,11 @@ namespace Tuturno.Controllers
             return View(data);
         }
 
+        public ActionResult Index3()
+        {
+            var data = _db.AnalistasC.ToList();
+            return View(data);
+        }
         public void ActualizaTurnoAutomaticoM()
         {
             List<AnalistasM> listaA = new List<AnalistasM>();

@@ -7,6 +7,7 @@
       <Diagram DiagramId="1f740ddf5e26478187c0037a2757431d" Name="Diagram1">
         <EntityTypeShape EntityType="dbTuturnoModel.Analistas" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="dbTuturnoModel.AnalistasM" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbTuturnoModel.AnalistasC" Width="1.5" PointX="0.75" PointY="3.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
