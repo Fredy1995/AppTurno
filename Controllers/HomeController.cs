@@ -141,8 +141,6 @@ namespace Tuturno.Controllers
                             an2.NombreCompleto1 = analisita1Siguiente;
                             an2.NombreCompleto2 = analisita2Siguiente;
                             _db.SaveChanges();
-
-                            
                         }
 
                         dbContextTransaction.Commit();
