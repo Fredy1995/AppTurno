@@ -14,7 +14,7 @@ namespace Tuturno.Models
     
     public partial class AnalistasC
     {
-        public int idAnalistasC { get; set; }
+        public int idAnalistaC { get; set; }
         public string NombreCompleto { get; set; }
         public Nullable<System.DateTime> Fecha { get; set; }
     }

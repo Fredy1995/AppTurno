@@ -16,10 +16,10 @@
         </EntityType>
         <EntityType Name="AnalistasC">
           <Key>
-            <PropertyRef Name="idAnalistasC" />
+            <PropertyRef Name="idAnalistaC" />
           </Key>
-          <Property Name="idAnalistasC" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="NombreCompleto" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="idAnalistaC" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NombreCompleto" Type="varchar" MaxLength="350" Nullable="false" />
           <Property Name="Fecha" Type="datetime" />
         </EntityType>
         <EntityType Name="AnalistasM">
@@ -67,10 +67,10 @@
         </EntityContainer>
         <EntityType Name="AnalistasC">
           <Key>
-            <PropertyRef Name="idAnalistasC" />
+            <PropertyRef Name="idAnalistaC" />
           </Key>
-          <Property Name="idAnalistasC" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="NombreCompleto" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="idAnalistaC" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NombreCompleto" Type="String" Nullable="false" MaxLength="350" FixedLength="false" Unicode="false" />
           <Property Name="Fecha" Type="DateTime" Precision="3" />
         </EntityType>
       </Schema>
@@ -105,7 +105,7 @@
               <MappingFragment StoreEntitySet="AnalistasC">
                 <ScalarProperty Name="Fecha" ColumnName="Fecha" />
                 <ScalarProperty Name="NombreCompleto" ColumnName="NombreCompleto" />
-                <ScalarProperty Name="idAnalistasC" ColumnName="idAnalistasC" />
+                <ScalarProperty Name="idAnalistaC" ColumnName="idAnalistaC" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
