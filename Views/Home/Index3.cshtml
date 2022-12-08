@@ -1,0 +1,58 @@
+﻿@model IEnumerable<Tuturno.Models.AnalistasC>
+@using GridMvc.Html
+@using System.Globalization;
+@{
+    ViewBag.Title = "Index3";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="mt-2 rounded text-center animate__animated animate__backInDown" style="background-color: #EBEFF1">
+    <h1>CUMPLEAÑOS @DateTime.Now.Year</h1>
+
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <div class="col-md-12 text-white rounded text-center animate__animated animate__bounceInLeft" style="background-color: #BA8EC1;" data-bs-toggle="tooltip" title=" @Model.ToList().Count() Analistas registrados">
+            <h1>Analistas</h1>
+        </div>
+
+        <div class="col-md-12 rounded text-center animate__animated animate__bounceInUp" style="background-color: #EAD3EB;">
+            <div class="table-responsive">
+
+                @Html.Grid(Model).Columns(columns =>
+           {
+               columns.Add(c => c.NombreCompleto).Titled("Nombre completo");
+               columns.Add(c => c.Fecha).Titled("Fecha");
+           })
+
+
+            </div>
+        </div>
+
+    </div>
+    <div class="col-md-8">
+        <div class="col-md-12 rounded text-white text-center animate__animated animate__bounceInRight" style="background-color: #B88EC3; height: 100px; display: flex; justify-content: center; align-items: center; border-style: dotted; border-width: thick;">
+            @{
+                string nombre = Model.ToList().Where(c => c.Fecha.Value.Month == @DateTime.Now.Month).Where(x => x.Fecha.Value.Day == @DateTime.Now.Day).Select(a => a.NombreCompleto).FirstOrDefault();
+                if (nombre != null)
+                {
+                    <h1 style=""><p style="font-size: 20px; line-height: 0; margin-top: 13px;">¡¡¡FELIZ CUMPLEAÑOS A </p>@nombre!!!</h1>
+                }
+                else
+                {
+                    <h1 style=""><p style="font-size: 20px; line-height: 0; margin-top: 13px;">HOY NO HAY PASTEL :(</p></h1>
+                }
+
+            }
+
+        </div>
+        <div class="col-sm-3 rounded text-center"></div>
+        <div class="col-md-12 rounded text-center animate__animated animate__fadeInRightBig" style="margin-top: 10px; height: 366px; border: solid #B88EC3; display: flex; justify-content: center; align-items: center; ">
+
+            <div class="row"><h1 style="color: #B88EC3; -webkit-text-stroke: 1px #E9D0E5; font-size: 60px; ">@DateTime.Now.ToLongDateString()</h1></div>
+            <div class="row">
+                <img src="~/imagenes/cumple.jpg" />
+            </div>
+        </div>
+    </div>
+</div>

@@ -127,8 +127,12 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\analista.cs" />
+    <Compile Include="Models\analistac.cs" />
     <Compile Include="Models\analistam.cs" />
     <Compile Include="Models\Analistas.cs">
+      <DependentUpon>ModelTuturno.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AnalistasC.cs">
       <DependentUpon>ModelTuturno.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AnalistasM.cs">
@@ -174,7 +178,8 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="imagenes\cargandoGarrafon.jpg" />
-    <Content Include="imagenes\limpiar2.jpg" />
+    <Content Include="imagenes\cumple.jpg" />
+    <Content Include="imagenes\limpieza.jpg" />
     <Content Include="imagenes\turno.jpg" />
     <Content Include="Models\ModelTuturno.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -254,6 +259,7 @@
     <Content Include="Views\Shared\_GridPager.cshtml" />
     <Content Include="Views\Shared\_Grid.cshtml" />
     <Content Include="Views\Home\Index2.cshtml" />
+    <Content Include="Views\Home\Index3.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

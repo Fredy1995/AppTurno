@@ -18,15 +18,20 @@
         left: 0;
     }
 
-#refri {
+#agua {
     top: 300px;
+    background-color:;
+}
+
+#refri {
+    top: 400px;
     background-color: #04AA6D;
 
 }
 
-#agua {
-    top: 400px;
-    background-color: ;
+#cumple {
+    top: 500px;
+    background-color:;
 }
 
 #projects {
