@@ -1,5 +1,10 @@
 ﻿body {
 }
+#mySidenav {
+    position: absolute;
+    z-index: 1000;
+    left: 0;
+}
 #mySidenav a {
     position: absolute;
     left: -80px;
