@@ -17,7 +17,7 @@
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-sm navbar-dark " style="background-color: #133A4B;">
+    <nav class="navbar navbar-expand-sm navbar-dark fixed-top " style="background-color: #133A4B;">
         <div class="container-fluid">
             <div class="navbar-brand" href="javascript:void(0)"> <img src="~/imagenes/turno.jpg" alt="Logo" style="width:40px;" class="rounded-pill"></div>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
@@ -42,9 +42,9 @@
     <div id="mySidenav" class="sidenav animate__animated animate__fadeInRight">
         <a href="@Url.Action("Index","Home")" id="agua" class=" bg-info">Agua</a>
         <a href="@Url.Action("Index2","Home")" id="refri" style=" background-color: #08AB98;">Refri&Micro</a>
-        <a href="@Url.Action("Index3","Home")" id="cumple" style="background-color: #BA8EC3; ">Cumpleaños</a>
+        @*<a href="@Url.Action("Index3","Home")" id="cumple" style="background-color: #BA8EC3; ">Cumpleaños</a>*@
     </div>
-
+    <br /><br /><br />
     <div class="container body-content">
         @RenderBody()
         <hr />

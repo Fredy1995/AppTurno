@@ -57,10 +57,53 @@
                 <img src="~/imagenes/limpieza.jpg" />
             </div>
         </div>
+        @{
+            int cont = 0;
+            DateTime fechaProxima = Convert.ToDateTime(Model.ToList().Where(c => c.Turno > 0).Select(f => f.Fecha).FirstOrDefault());
+
+            DateTime fechaP = fechaProxima.AddDays(7);
+
+            foreach (var item in Model.ToArray())
+            {
+                if (item.Turno > 0)
+                {
+
+                    if (cont < Model.ToList().Count() - 1)
+                    {
+                        <div class="toast show animate__animated animate__fadeInRight">
+                            <div class="toast-header">
+                                <strong class="me-auto">Próximo  @fechaP.ToString("D")</strong>
+                                <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+                            </div>
+                            <div class="toast-body">
+                                <h4>@Model.ToList().Select(c => c.NombreCompleto1).ElementAt(cont + 1)</h4>
+                                <h4>@Model.ToList().Select(c => c.NombreCompleto2).ElementAt(cont + 1)</h4>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="toast show animate__animated animate__fadeInRight">
+                            <div class="toast-header">
+                                <strong class="me-auto">Próximo  @fechaP.ToString("D")</strong>
+                                <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+                            </div>
+                            <div class="toast-body">
+                                <h4>@Model.ToList().Select(c => c.NombreCompleto1).ElementAt(0)</h4>
+                                <h4>@Model.ToList().Select(c => c.NombreCompleto2).ElementAt(0)</h4>
+                            </div>
+                        </div>
+
+                    }
+                }
+                cont++;
+
+            }
+        }
     </div>
+   
+
 </div>
-
-
 
 <!-- The Modal Administrar Mujeres -->
 <div class="modal fade" id="ModalAdministrarMujeres">

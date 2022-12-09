@@ -81,11 +81,14 @@
             <div class="modal-body text-center">
                 <form method="post" action="Index3">
                     <div class="row">
+                        <span class="badge bg-danger">* En la fecha de cumpleaños a todos se les asigna el año 2000</span>
+                    </div><br />
+                    <div class="row">
                         <div class="col-sm-5">
                             <input type="text" class="form-control" placeholder="Ingresa analista" name="analista">
                         </div>
                         <div class="col-sm-5">
-                           <input type="date" class="form-control" name="fechaNacimiento"/>
+                           <input type="date" class="form-control" name="fechaNacimiento"  data-bs-toggle="tooltip" title="Fecha de nacimiento"/>
                         </div>
                         <div class="col-sm-2">
                             <input type="submit" name="btnagregar" class="btn btn-primary" value="Agregar" />

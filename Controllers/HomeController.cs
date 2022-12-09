@@ -88,6 +88,7 @@ namespace Tuturno.Controllers
             return View(data);
         }
 
+        
         public ActionResult Index2(FormCollection objetoForm)
         {
             ActualizaTurnoAutomaticoM();

@@ -5,7 +5,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <_PublishTargetUrl>C:\inetpub\wwwroot\Tuturno</_PublishTargetUrl>
-    <History>True|2022-12-06T22:35:08.6973798Z;True|2022-12-06T12:33:56.2635170-06:00;True|2022-11-17T17:53:59.0604008-06:00;False|2022-11-17T17:53:44.1153964-06:00;</History>
+    <History>True|2022-12-09T19:53:42.1189996Z;True|2022-12-09T10:22:35.2356799-06:00;True|2022-12-06T16:35:08.6973798-06:00;True|2022-12-06T12:33:56.2635170-06:00;True|2022-11-17T17:53:59.0604008-06:00;False|2022-11-17T17:53:44.1153964-06:00;</History>
   </PropertyGroup>
   <ItemGroup>
     <File Include="bin/Antlr3.Runtime.dll">
@@ -153,10 +153,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>05/27/2022 23:42:50</publishTime>
     </File>
     <File Include="bin/Tuturno.dll">
-      <publishTime>12/06/2022 16:35:04</publishTime>
+      <publishTime>12/09/2022 13:53:38</publishTime>
     </File>
     <File Include="bin/Tuturno.pdb">
-      <publishTime>12/06/2022 16:35:04</publishTime>
+      <publishTime>12/09/2022 13:53:38</publishTime>
     </File>
     <File Include="bin/WebGrease.dll">
       <publishTime>01/23/2014 12:57:34</publishTime>
@@ -264,7 +264,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>11/14/2022 17:50:03</publishTime>
     </File>
     <File Include="Content/StyleMenu.css">
-      <publishTime>12/06/2022 11:08:16</publishTime>
+      <publishTime>12/08/2022 14:51:05</publishTime>
     </File>
     <File Include="favicon.ico">
       <publishTime>11/15/2022 14:02:06</publishTime>
@@ -278,11 +278,17 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="imagenes/cargandoGarrafon.jpg">
       <publishTime>11/17/2022 17:23:13</publishTime>
     </File>
+    <File Include="imagenes/cumple.jpg">
+      <publishTime>12/07/2022 17:58:13</publishTime>
+    </File>
     <File Include="imagenes/garrafon.png">
       <publishTime>11/15/2022 13:55:04</publishTime>
     </File>
     <File Include="imagenes/limpiar2.jpg">
       <publishTime>12/05/2022 17:35:27</publishTime>
+    </File>
+    <File Include="imagenes/limpieza.jpg">
+      <publishTime>12/07/2022 17:58:13</publishTime>
     </File>
     <File Include="imagenes/turno.jpg">
       <publishTime>12/06/2022 10:30:05</publishTime>
@@ -291,10 +297,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>11/16/2022 14:29:50</publishTime>
     </File>
     <File Include="Models/ModelTuturno.edmx.diagram">
-      <publishTime>12/05/2022 18:04:34</publishTime>
+      <publishTime>12/07/2022 18:08:02</publishTime>
     </File>
     <File Include="Scripts/autorizacionjs.js">
-      <publishTime>12/02/2022 16:55:19</publishTime>
+      <publishTime>12/08/2022 17:15:12</publishTime>
     </File>
     <File Include="Scripts/bootstrap.bundle.js">
       <publishTime>11/14/2022 17:58:44</publishTime>
@@ -375,10 +381,13 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>11/14/2022 17:50:28</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>12/06/2022 13:03:58</publishTime>
+      <publishTime>12/07/2022 17:58:13</publishTime>
     </File>
     <File Include="Views/Home/Index2.cshtml">
-      <publishTime>12/06/2022 13:11:26</publishTime>
+      <publishTime>12/09/2022 13:52:31</publishTime>
+    </File>
+    <File Include="Views/Home/Index3.cshtml">
+      <publishTime>12/09/2022 09:48:23</publishTime>
     </File>
     <File Include="Views/Shared/Error.cshtml">
       <publishTime>11/14/2022 17:50:03</publishTime>
@@ -390,7 +399,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>11/16/2022 14:29:50</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>12/06/2022 16:34:16</publishTime>
+      <publishTime>12/09/2022 14:26:21</publishTime>
     </File>
     <File Include="Views/Web.config">
       <publishTime>11/14/2022 17:50:03</publishTime>
@@ -399,7 +408,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>11/14/2022 17:50:03</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>12/06/2022 12:33:46</publishTime>
+      <publishTime>12/09/2022 10:22:32</publishTime>
     </File>
   </ItemGroup>
 </Project>

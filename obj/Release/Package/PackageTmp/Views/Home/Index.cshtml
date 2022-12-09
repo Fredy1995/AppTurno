@@ -5,7 +5,7 @@
 
 }
 
-<div class="mt-2 bg-primary text-white rounded text-center animate__animated animate__backInDown">
+<div class="mt-2 rounded text-center animate__animated animate__backInDown" style="background-color: #EBEFF1">
     <h1>ROL DE GARRAFÓN @DateTime.Now.Year</h1>
 
 </div>
@@ -30,7 +30,7 @@
 
     </div>
     <div class="col-md-8">
-        <div class="col-md-12 rounded text-center animate__animated animate__bounceInRight" style="color:#5404FF; background-color: #26FDC9; height: 100px; display: flex; justify-content: center; align-items: center; border-style:dotted; border-width:thick;">
+        <div class="col-md-12 rounded text-white text-center animate__animated animate__bounceInRight" style="background-color: #3DA6D3; height: 100px; display: flex; justify-content: center; align-items: center; border-style: dotted; border-width: thick;">
             @{
                 string nombre = Model.ToList().Where(c => c.Turno > 0).Select(a => a.NombreCompleto).FirstOrDefault();
                 <h1 style="">@nombre</h1>
@@ -40,7 +40,7 @@
         <div class="col-sm-3 rounded text-center"></div>
         <div class="col-md-12 rounded text-center animate__animated animate__fadeInRightBig" style="margin-top: 10px; height: 366px; border: solid #00B2FF; display: flex; justify-content: center; align-items: center; ">
 
-            <div class="row"><h1 style="color: #3D00EC; -webkit-text-stroke: 1px #26FDC9; font-size: 60px; ">@DateTime.Now.ToLongDateString()</h1></div>
+            <div class="row"><h1 style="color: #3DA6D3; -webkit-text-stroke: 1px #CDEEFC; font-size: 60px; ">@DateTime.Now.ToLongDateString()</h1></div>
             <div class="row">
                 <img src="~/imagenes/cargandoGarrafon.jpg" />
             </div>

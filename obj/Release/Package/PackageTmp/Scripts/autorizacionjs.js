@@ -43,6 +43,12 @@ const autorizacion = () => {
                 $('#pwd').val('');
                 $('#tTurno').val('');
             }
+            else if (pass == "4dm1n15tr4r" && tipoTurno == "c") {
+                $('#ModalAdministrarCumpleanios').modal('show'); //Abrir modal administrar
+                $('#ModalAutorizacion').modal('toggle'); //Cerra modal autorización
+                $('#pwd').val('');
+                $('#tTurno').val('');
+            }
             else {
                 alert('¡La contraseña es incorrecta!');
                 $('#pwd').val('');
