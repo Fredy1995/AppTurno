@@ -157,9 +157,47 @@ namespace Tuturno.Controllers
             return View(data);
         }
 
-        public ActionResult Index3()
+        public ActionResult Index3(FormCollection objetoForm)
         {
-            var data = _db.AnalistasC.ToList();
+            using (var dbContextTransaction = _db.Database.BeginTransaction())
+            {
+                try
+                {
+                    if (objetoForm["btnagregar"] != null)
+                    {
+                        var an = new AnalistasC()
+                        {
+
+                            NombreCompleto = objetoForm["analista"],
+                            Fecha = Convert.ToDateTime(objetoForm["fechaNacimiento"])
+                            
+                        };
+
+                        _db.AnalistasC.Add(an);
+                        _db.SaveChanges();
+                        dbContextTransaction.Commit();
+                        return RedirectToAction("Index3");
+                    }
+                    else if (objetoForm["btneliminar"] != null)
+                    {
+                        int idA = Convert.ToInt32(objetoForm["idAnalistas"].ToString());
+                        var an = _db.AnalistasC.SingleOrDefault(c => c.idAnalistaC == idA);
+                        if (an != null)
+                        {
+                            _db.AnalistasC.Remove(an);
+                            _db.SaveChanges();
+                            dbContextTransaction.Commit();
+                            return RedirectToAction("Index3");
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    dbContextTransaction.Rollback();
+                }
+            }
+
+                var data = _db.AnalistasC.ToList();
             return View(data);
         }
         public void ActualizaTurnoAutomaticoM()

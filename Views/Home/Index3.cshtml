@@ -1,6 +1,7 @@
 ﻿@model IEnumerable<Tuturno.Models.AnalistasC>
 @using GridMvc.Html
 @using System.Globalization;
+@using System.Collections.Generic;
 @{
     ViewBag.Title = "Index3";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -18,14 +19,21 @@
 
         <div class="col-md-12 rounded text-center animate__animated animate__bounceInUp" style="background-color: #EAD3EB;">
             <div class="table-responsive">
-
-                @Html.Grid(Model).Columns(columns =>
-           {
-               columns.Add(c => c.NombreCompleto).Titled("Nombre completo");
-               columns.Add(c => c.Fecha).Titled("Fecha");
-           })
-
-
+                <table class="table table-striped">
+                    <tr>
+                        <th>Nombre completo</th>
+                        <th>Día</th>
+                        <th>Mes</th>
+                    </tr>
+                    @foreach (var item in Model.OrderBy(c =>c.Fecha).ToList())
+                    {
+                        <tr>
+                            <td>@item.NombreCompleto</td>
+                            <td>@item.Fecha.Value.Day</td>
+                            <td>@item.Fecha.Value.ToString("MMMM").ToUpper()</td>
+                        </tr>
+                    }
+                </table>
             </div>
         </div>
 
@@ -53,6 +61,78 @@
             <div class="row">
                 <img src="~/imagenes/cumple.jpg" />
             </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- The Modal Administrar Cumpleaños -->
+<div class="modal fade" id="ModalAdministrarCumpleanios">
+    <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header text-center">
+                <h4 class="modal-title text-center">Administrar Cumpleaños</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body text-center">
+                <form method="post" action="Index3">
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control" placeholder="Ingresa analista" name="analista">
+                        </div>
+                        <div class="col-sm-5">
+                           <input type="date" class="form-control" name="fechaNacimiento"/>
+                        </div>
+                        <div class="col-sm-2">
+                            <input type="submit" name="btnagregar" class="btn btn-primary" value="Agregar" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control" placeholder="ID analista" name="idAnalistas">
+                        </div>
+                        <div class="col-sm-5">
+
+                        </div>
+                        <div class="col-sm-2">
+                            <input type="submit" name="btneliminar" class="btn btn-danger" value="Eliminar" />
+                        </div>
+                    </div>
+                </form>
+
+                <br />
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre completo</th>
+                            <th>Día</th>
+                            <th>Mes</th>
+                        </tr>
+
+                       
+                        @foreach (var item in Model.OrderBy(c => c.Fecha).ToList())
+                        {
+                            <tr>
+                                <td>@item.idAnalistaC</td>
+                                <td>@item.NombreCompleto</td>
+                                <td>@item.Fecha.Value.Day</td>
+                                <td>@item.Fecha.Value.ToString("MMMM").ToUpper()</td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+
         </div>
     </div>
 </div>
