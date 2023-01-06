@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Tuturno.Models.AnalistasM>
+﻿@model Tuturno.Models.modelPrincipal
 @using GridMvc.Html
 @using System.Globalization;
 @{
@@ -64,7 +64,7 @@
 <div class="row">
     <div class="col-md-4">
         @{
-            int totalM = @Model.ToList().Where(c => c.NombreCompleto1 != "").Count() + @Model.ToList().Where(c => c.NombreCompleto2 != "").Count();
+            int totalM = @Model.analistm.ToList().Where(c => c.NombreCompleto1 != "").Count() + @Model.analistm.ToList().Where(c => c.NombreCompleto2 != "").Count();
         }
         <div class="col-md-12 text-white rounded text-center animate__animated animate__bounceInLeft" style="background-color: #08AB98;" data-bs-toggle="tooltip" title="@totalM  Analistas registrados">
             <h1>Analistas</h1>
@@ -73,7 +73,7 @@
         <div class="col-md-12 rounded text-center animate__animated animate__bounceInUp" style="background-color: #C0EDE6; ">
             <div class="table-responsive">
 
-                @Html.Grid(Model).Columns(columns =>
+                @Html.Grid(Model.analistm).Columns(columns =>
            {
                columns.Add(c => c.NombreCompleto1).Titled("Nombre completo");
                columns.Add(c => c.NombreCompleto2).Titled("Nombre completo");
@@ -88,8 +88,8 @@
     <div class="col-md-8">
         <div class="col-md-12 rounded text-white text-center animate__animated animate__bounceInRight" style="background-color: #46B4A9; height: 100px; display: flex; justify-content: center; align-items: center; border-style: dotted; border-width: thick;">
             @{
-                string nombre1 = Model.ToList().Where(c => c.Turno > 0).Select(a => a.NombreCompleto1).FirstOrDefault();
-                string nombre2 = Model.ToList().Where(c => c.Turno > 0).Select(a => a.NombreCompleto2).FirstOrDefault();
+                string nombre1 = Model.analistm.ToList().Where(c => c.Turno > 0).Select(a => a.NombreCompleto1).FirstOrDefault();
+                string nombre2 = Model.analistm.ToList().Where(c => c.Turno > 0).Select(a => a.NombreCompleto2).FirstOrDefault();
                 <h1>@nombre1 & @nombre2</h1>
             }
 
@@ -99,7 +99,7 @@
 
             <div class="row">
                 @{
-                    DateTime fecha = Convert.ToDateTime(Model.ToList().Where(c => c.Turno > 0).Select(f => f.Fecha).FirstOrDefault());
+                    DateTime fecha = Convert.ToDateTime(Model.analistm.ToList().Where(c => c.Turno > 0).Select(f => f.Fecha).FirstOrDefault());
                     <h1 style="color: #46B4A9; -webkit-text-stroke: 1px #C0EDE6; font-size: 60px; ">@fecha.ToLongDateString()</h1>
                 }
 
@@ -110,25 +110,25 @@
         </div>
         @{
             int cont = 0;
-            DateTime fechaProxima = Convert.ToDateTime(Model.ToList().Where(c => c.Turno > 0).Select(f => f.Fecha).FirstOrDefault());
+            DateTime fechaProxima = Convert.ToDateTime(Model.analistm.ToList().Where(c => c.Turno > 0).Select(f => f.Fecha).FirstOrDefault());
 
             DateTime fechaP = fechaProxima.AddDays(7);
 
-            foreach (var item in Model.ToArray())
+            foreach (var item in Model.analistm.ToArray())
             {
                 if (item.Turno > 0)
                 {
 
-                    if (cont < Model.ToList().Count() - 1)
+                    if (cont < Model.analistm.ToList().Count() - 1)
                     {
-                        <div class="toast show animate__animated animate__fadeInRight">
+                        <div class="content3 toast show animate__animated animate__fadeInUpBig" style="display: none;">
                             <div class="toast-header">
                                 <strong class="me-auto">Próximo  @fechaP.ToString("D")</strong>
                                 <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
                             </div>
                             <div class="toast-body">
-                                <h4>@Model.ToList().Select(c => c.NombreCompleto1).ElementAt(cont + 1)</h4>
-                                <h4>@Model.ToList().Select(c => c.NombreCompleto2).ElementAt(cont + 1)</h4>
+                                <h4>@Model.analistm.ToList().Select(c => c.NombreCompleto1).ElementAt(cont + 1)</h4>
+                                <h4>@Model.analistm.ToList().Select(c => c.NombreCompleto2).ElementAt(cont + 1)</h4>
                             </div>
                         </div>
                     }
@@ -140,8 +140,8 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
                             </div>
                             <div class="toast-body">
-                                <h4>@Model.ToList().Select(c => c.NombreCompleto1).ElementAt(0)</h4>
-                                <h4>@Model.ToList().Select(c => c.NombreCompleto2).ElementAt(0)</h4>
+                                <h4>@Model.analistm.ToList().Select(c => c.NombreCompleto1).ElementAt(0)</h4>
+                                <h4>@Model.analistm.ToList().Select(c => c.NombreCompleto2).ElementAt(0)</h4>
                             </div>
                         </div>
 
@@ -152,7 +152,7 @@
             }
         }
     </div>
-   
+
 
 </div>
 
@@ -196,7 +196,7 @@
 
                 <br />
                 <div class="table-responsive">
-                    @Html.Grid(Model).Columns(columns =>
+                    @Html.Grid(Model.analistm).Columns(columns =>
                {
                    columns.Add(c => c.idAnalistasM).Titled("ID");
                    columns.Add(c => c.NombreCompleto1).Titled("Nombre completo");
@@ -243,7 +243,7 @@
 
                 <br />
                 <div class="table-responsive">
-                    @Html.Grid(Model).Columns(columns =>
+                    @Html.Grid(Model.analistm).Columns(columns =>
                 {
                     columns.Add(c => c.idAnalistasM).Titled("ID");
                     columns.Add(c => c.NombreCompleto1).Titled("Nombre completo");

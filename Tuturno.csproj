@@ -126,9 +126,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\analista.cs" />
-    <Compile Include="Models\analistac.cs" />
-    <Compile Include="Models\analistam.cs" />
     <Compile Include="Models\Analistas.cs">
       <DependentUpon>ModelTuturno.tt</DependentUpon>
     </Compile>
@@ -138,6 +135,7 @@
     <Compile Include="Models\AnalistasM.cs">
       <DependentUpon>ModelTuturno.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\modelPrincipal.cs" />
     <Compile Include="Models\ModelTuturno.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -173,6 +171,7 @@
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\Gridmvc.css" />
+    <Content Include="Content\StyleLayout.css" />
     <Content Include="Content\StyleMenu.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -191,6 +190,7 @@
       <DependentUpon>ModelTuturno.edmx</DependentUpon>
       <LastGenOutput>ModelTuturno.cs</LastGenOutput>
     </Content>
+    <Content Include="Scripts\animaciones.js" />
     <Content Include="Scripts\autorizacionjs.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />

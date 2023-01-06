@@ -129,8 +129,8 @@ C:\Repositorios\Proyectos ASP.NET MVC\TuturnoFinal\bin\es\System.Web.WebPages.re
 C:\Repositorios\Proyectos ASP.NET MVC\TuturnoFinal\bin\es\System.Web.WebPages.Deployment.resources.dll
 C:\Repositorios\Proyectos ASP.NET MVC\TuturnoFinal\bin\es\System.Web.WebPages.Razor.resources.dll
 C:\Repositorios\Proyectos ASP.NET MVC\TuturnoFinal\bin\es\System.Web.Optimization.resources.dll
-C:\Repositorios\Proyectos ASP.NET MVC\TuturnoFinal\obj\Release\Tuturno.csprojAssemblyReference.cache
 C:\Repositorios\Proyectos ASP.NET MVC\TuturnoFinal\obj\Release\Tuturno.csproj.CoreCompileInputs.cache
 C:\Repositorios\Proyectos ASP.NET MVC\TuturnoFinal\obj\Release\Tuturno.csproj.CopyComplete
 C:\Repositorios\Proyectos ASP.NET MVC\TuturnoFinal\obj\Release\Tuturno.dll
 C:\Repositorios\Proyectos ASP.NET MVC\TuturnoFinal\obj\Release\Tuturno.pdb
+C:\Repositorios\Proyectos ASP.NET MVC\TuturnoFinal\obj\Release\Tuturno.csproj.AssemblyReference.cache

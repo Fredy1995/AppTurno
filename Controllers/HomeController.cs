@@ -15,8 +15,10 @@ namespace Tuturno.Controllers
     public class HomeController : Controller
     {
         public dbTuturnoEntities _db = new dbTuturnoEntities();
+        private modelPrincipal data = new modelPrincipal();
         public ActionResult Index(FormCollection objetoForm)
         {
+            
             ActualizaTurnoAutomatico();
             using (var dbContextTransaction = _db.Database.BeginTransaction())
             {
@@ -84,10 +86,20 @@ namespace Tuturno.Controllers
                     dbContextTransaction.Rollback();
                 }
             }
-            var data = _db.Analistas.ToList();
+            ProximoCumple();
+            data.analist = _db.Analistas.ToList();
+            
             return View(data);
         }
 
+        public modelPrincipal ProximoCumple()
+        {
+            int mes = DateTime.Now.Month;
+            var cumpleMes = _db.AnalistasC.Where(c => c.Fecha.Value.Month == DateTime.Now.Month).OrderBy(c => c.Fecha).ToList();
+            data.nombre = cumpleMes.Where(c => c.Fecha.Value.Day > DateTime.Now.Day).Select(c => c.NombreCompleto).FirstOrDefault();
+            data.fecha = Convert.ToDateTime(cumpleMes.Where(c => c.Fecha.Value.Day > DateTime.Now.Day).Select(c => c.Fecha).FirstOrDefault());
+            return data;
+        }
         
         public ActionResult Index2(FormCollection objetoForm)
         {
@@ -154,7 +166,10 @@ namespace Tuturno.Controllers
                     dbContextTransaction.Rollback();
                 }
             }
-            var data = _db.AnalistasM.ToList();
+            ProximoCumple();
+            //var data = _db.AnalistasM.ToList();
+            data.analistm = _db.AnalistasM.ToList();
+           
             return View(data);
         }
 
@@ -197,8 +212,9 @@ namespace Tuturno.Controllers
                     dbContextTransaction.Rollback();
                 }
             }
-
-                var data = _db.AnalistasC.ToList();
+            ProximoCumple();
+            //var data = _db.AnalistasC.ToList();
+            data.analistasc = _db.AnalistasC.ToList();
             return View(data);
         }
         public void ActualizaTurnoAutomaticoM()

@@ -1,4 +1,5 @@
-﻿@model IEnumerable<Tuturno.Models.Analistas>
+﻿@model Tuturno.Models.modelPrincipal
+
 @using GridMvc.Html
 @{
     ViewBag.Title = "Index";
@@ -62,14 +63,15 @@
 </div>
 <div class="row">
     <div class="col-md-4">
-        <div class="col-md-12 bg-info text-white rounded text-center animate__animated animate__bounceInLeft" data-bs-toggle="tooltip" title=" @Model.ToList().Count() Analistas registrados">
+        
+        <div class="col-md-12 bg-info text-white rounded text-center animate__animated animate__bounceInLeft" data-bs-toggle="tooltip" title=" @Model.analist.ToList().Count() Analistas registrados">
             <h1>Analistas</h1>
         </div>
 
         <div class="col-md-12 rounded text-center animate__animated animate__bounceInUp" style="background-color: #B9E7FB;">
             <div class="table-responsive">
 
-                @Html.Grid(Model).Columns(columns =>
+                @Html.Grid(Model.analist).Columns(columns =>
     {
       columns.Add(c => c.NombreCompleto).Titled("Nombre completo");
       columns.Add(c => c.Turno).Titled("Ronda");
@@ -83,7 +85,7 @@
     <div class="col-md-8">
         <div class="col-md-12 rounded text-white text-center animate__animated animate__bounceInRight" style="background-color: #3DA6D3; height: 100px; display: flex; justify-content: center; align-items: center; border-style: dotted; border-width: thick;">
             @{
-                string nombre = Model.ToList().Where(c => c.Turno > 0).Select(a => a.NombreCompleto).FirstOrDefault();
+                string nombre = Model.analist.ToList().Where(c => c.Turno > 0).Select(a => a.NombreCompleto).FirstOrDefault();
                 <h1 style="">@nombre</h1>
             }
 
@@ -128,11 +130,11 @@
                             <input type="submit" name="btneliminar" class="btn btn-danger" value="Eliminar" />
                         </div>
                     </div>
-                </form> 
+                </form>
 
                 <br />
                 <div class="table-responsive">
-                    @Html.Grid(Model).Columns(columns =>
+                    @Html.Grid(Model.analist).Columns(columns =>
                         {
                           columns.Add(c => c.idAnalista).Titled("ID Analista");
                           columns.Add(c => c.NombreCompleto).Titled("Nombre completo");
@@ -175,7 +177,7 @@
 
                 <br />
                 <div class="table-responsive">
-                    @Html.Grid(Model).Columns(columns =>
+                    @Html.Grid(Model.analist).Columns(columns =>
                         {
                             columns.Add(c => c.idAnalista).Titled("ID Analista");
                             columns.Add(c => c.NombreCompleto).Titled("Nombre completo");

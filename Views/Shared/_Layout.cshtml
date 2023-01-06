@@ -1,5 +1,4 @@
-﻿@*@model IEnumerable<Tuturno.Models.Analistas>
-@using GridMvc.Html*@
+﻿@model Tuturno.Models.modelPrincipal
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,20 +6,26 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TuturnoXD</title>
-
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     <script src="~/Scripts/bootstrap.bundle.min.js"></script>
     <script src="~/Scripts/jquery-3.6.1.js"></script>
     <script src="~/Scripts/autorizacionjs.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link href="~/Content/StyleMenu.css" rel="stylesheet" />
+    <link href="~/Content/StyleLayout.css" rel="stylesheet" />
+    <script src="~/Scripts/animaciones.js"></script>
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    <script>window.rwbp = { email: 'fredo199575@gmail.com', phone: '+522241108168', message: '¡Hola!, Duda o sugerencia, contacta al desarrollador', lang: 'es' }</script>
+        <script defer async src='https://duz4dqsaqembt.cloudfront.net/client/whats.js'></script>
  
+    <!-- Start of serviciopublico Zendesk Widget script -->
+    <!--<script id="ze-snippet" src="https://static.zdassets.com/ekr/snippet.js?key=a7183025-c795-45d9-a6aa-1b2e6a3d42ab"></script>--><!-- End of serviciopublico Zendesk Widget script -->
 </head>
 <body>
 
     <nav class="navbar navbar-expand-sm navbar-dark fixed-top " style="background-color: #133A4B;">
         <div class="container-fluid">
-            <div class="navbar-brand" href="javascript:void(0)"> <img src="~/imagenes/turno.jpg" alt="Logo" style="width:40px;" class="rounded-pill"></div>
+            <div class="navbar-brand" href="javascript:void(0)"> <img src="~/imagenes/turno.jpg" alt="Logo" style="width:40px;" class="rounded-pill"> </div>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -29,7 +34,6 @@
                     <li class="nav-item">
                         <b> <a class="nav-link" style="color:white;  text-shadow: 2px 2px 2px gray;">TUTURNO-XD</a></b>
                     </li>
-
                 </ul>
                 <div class="d-flex">
                     <ul class="navbar-nav me-auto">
@@ -40,20 +44,42 @@
             </div>
         </div>
     </nav>
-    <div id="mySidenav" class="sidenav animate__animated animate__fadeInRight">
+    <div id="mySidenav" class="sidenav animate__animated animate__fadeInRight ">
         <a href="@Url.Action("Index","Home")" id="agua" class=" bg-info">Agua</a>
         <a href="@Url.Action("Index2","Home")" id="refri" style=" background-color: #08AB98;">Refri&Micro</a>
-        @*<a href="@Url.Action("Index3","Home")" id="cumple" style="background-color: #BA8EC3; ">Cumpleaños</a>*@
+        <a href="@Url.Action("Index3","Home")" id="cumple" style="background-color: #BA8EC3;">Cumpleaños</a>
     </div>
     <br /><br /><br />
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            @*<p>&copy; @DateTime.Now.Year - Tecnologías .NET - AF - V. 1.0.17.11.2022</p> -Solo tenia el calendario de agua*@
-            <p>&copy; @DateTime.Now.Year - Tecnologías .NET - AF - V. 2.0.8.12.2022</p>
-        </footer>
-    </div>
+                <div class="container body-content">
+                    @RenderBody()
+                    @{
+                        DateTime fechaCumpleañero = Model.fecha;
+                        DateTime proximoCumple;
+                        proximoCumple = new DateTime(DateTime.Now.Year, fechaCumpleañero.Month, fechaCumpleañero.Day);
+                        TimeSpan faltan = proximoCumple.Subtract(DateTime.Now);
+
+                        <div class="content content2 toast show animate__animated animate__backInLeft" style="position: absolute; top: 100px; left: 0px; z-index: 1; font-size: 16px; display: none;">
+                            <div class="toast-header">
+                                <strong class="me-auto">Próximo <a href="@Url.Action("Index3","Home")" style="color: #133A4B; text-decoration: none;">cumpleaños</a>,@fechaCumpleañero.Day de @fechaCumpleañero.ToString("MMMM") <i class='fas fa-birthday-cake'></i></strong>
+                                <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+                            </div>
+                            <div class="toast-body">
+                                <h4>@Model.nombre</h4>
+                                Faltan:<h4> @faltan.Days días: @faltan.Hours Horas: @faltan.Minutes Minutos</h4>
+                            </div>
+                        </div>
+                    }
+                    <hr />
+                   
+                  
+                    <footer>
+                        @*<p>&copy; @DateTime.Now.Year - Tecnologías .NET - AF - V. 1.0.17.11.2022</p> -Solo tenia el calendario de agua*@
+                        @*<p>&copy; @DateTime.Now.Year - Tecnologías .NET - AF - V. 2.0.8.12.2022</p> - Solo se agregó Calendarío de limpieza de Refrigerador y Microondas*@
+                        @*<p>&copy; @DateTime.Now.Year - Tecnologías .NET - AF - V. 2.0.05.01.2023</p> - Solo se agregó Calendario de cumpleaños*@
+                        <p>&copy; @DateTime.Now.Year - Tecnologías .NET - AF - V. 3.0.10.01.2023</p>
+                    </footer>
+                </div>
+
     <!-- The Modal -->
     <div class="modal" id="ModalAutorizacion">
         <div class="modal-dialog ">
@@ -96,6 +122,7 @@
         var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
             return new bootstrap.Tooltip(tooltipTriggerEl)
         })
+      
     </script>
 
 </body>
