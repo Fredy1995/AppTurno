@@ -135,6 +135,9 @@
     <Compile Include="Models\AnalistasM.cs">
       <DependentUpon>ModelTuturno.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Bitacora.cs">
+      <DependentUpon>ModelTuturno.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\modelPrincipal.cs" />
     <Compile Include="Models\ModelTuturno.Context.cs">
       <AutoGen>True</AutoGen>
@@ -176,6 +179,7 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="imagenes\Cargando.gif" />
     <Content Include="imagenes\cargandoGarrafon.jpg" />
     <Content Include="imagenes\cumple.jpg" />
     <Content Include="imagenes\limpieza.jpg" />

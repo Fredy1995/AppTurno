@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Net;
+using System.Net.NetworkInformation;
 using System.Web;
 using System.Web.Mvc;
 using Tuturno.Models;
@@ -14,11 +16,12 @@ namespace Tuturno.Controllers
 {
     public class HomeController : Controller
     {
+
         public dbTuturnoEntities _db = new dbTuturnoEntities();
         private modelPrincipal data = new modelPrincipal();
         public ActionResult Index(FormCollection objetoForm)
         {
-            
+            Bitacora();
             ActualizaTurnoAutomatico();
             using (var dbContextTransaction = _db.Database.BeginTransaction())
             {
@@ -103,6 +106,7 @@ namespace Tuturno.Controllers
         
         public ActionResult Index2(FormCollection objetoForm)
         {
+
             ActualizaTurnoAutomaticoM();
             using (var dbContextTransaction = _db.Database.BeginTransaction())
             {
@@ -363,8 +367,70 @@ namespace Tuturno.Controllers
                 }
             }
         }
-        
-      
-      
+
+        public void Bitacora()
+        {
+          
+            using (var dbContextTransaction = _db.Database.BeginTransaction())
+            {
+                var ipobtenida = Request.UserHostAddress;
+                var IDip = _db.Bitacora.SingleOrDefault(c => c.direccionIP == ipobtenida );
+              
+                try
+                {
+                    if (IDip != null)
+                    {
+                        //Existe la ip en la bitacora, entonces Actualizo fechaIngreso
+                        int IdUser = _db.Bitacora.Where(c => c.direccionIP == ipobtenida).Select(a => a.idUser).FirstOrDefault();
+                        var IP = _db.Bitacora.SingleOrDefault(c => c.idUser == IdUser);
+                        DateTime fechaRegistrada = Convert.ToDateTime(_db.Bitacora.Where(c => c.direccionIP ==  IP.direccionIP).Select(f => f.fechaIngreso).FirstOrDefault());
+                        
+                        if (IP != null)
+                        {
+                            IP.fechaIngreso = DateTime.Now;
+                            if (fechaRegistrada.ToString("dd/MM/yyyy") != DateTime.Now.ToString("dd/MM/yyyy"))
+                            {
+                                IP.VisitasAlDia = 0;
+                            }
+                            else
+                            {
+                                IP.VisitasAlDia = IP.VisitasAlDia + 1;
+                            }
+                            _db.SaveChanges();
+                        }
+                        dbContextTransaction.Commit();
+
+                    }
+                    else 
+                    {
+                        //No existe IP entonces agregó a la BD
+                        var ip = new Bitacora()
+                        {
+
+                            usuario = "Anonimo",
+                            direccionIP = ipobtenida,
+                            hostname = Dns.GetHostEntry(Request.ServerVariables["REMOTE_HOST"]).HostName,
+                            fechaIngreso = DateTime.Now,
+                            VisitasAlDia = 1
+
+
+                        };
+
+
+                        _db.Bitacora.Add(ip);
+                        _db.SaveChanges();
+                        dbContextTransaction.Commit();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    dbContextTransaction.Rollback();
+                }
+            }
+        }
+
+       
+
+
     }
 }

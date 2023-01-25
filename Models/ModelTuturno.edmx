@@ -32,10 +32,22 @@
           <Property Name="Turno" Type="int" Nullable="false" />
           <Property Name="Fecha" Type="datetime" />
         </EntityType>
+        <EntityType Name="Bitacora">
+          <Key>
+            <PropertyRef Name="idUser" />
+          </Key>
+          <Property Name="idUser" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="usuario" Type="varchar" MaxLength="150" />
+          <Property Name="direccionIP" Type="varchar" MaxLength="80" />
+          <Property Name="hostname" Type="varchar" MaxLength="80" />
+          <Property Name="fechaIngreso" Type="datetime" />
+          <Property Name="VisitasAlDia" Type="int" />
+        </EntityType>
         <EntityContainer Name="dbTuturnoModelStoreContainer">
           <EntitySet Name="Analistas" EntityType="Self.Analistas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AnalistasC" EntityType="Self.AnalistasC" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AnalistasM" EntityType="Self.AnalistasM" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Bitacora" EntityType="Self.Bitacora" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -64,6 +76,7 @@
           <EntitySet Name="Analistas" EntityType="Self.Analistas" />
           <EntitySet Name="AnalistasM" EntityType="Self.AnalistasM" />
           <EntitySet Name="AnalistasC" EntityType="dbTuturnoModel.AnalistasC" />
+          <EntitySet Name="Bitacora" EntityType="dbTuturnoModel.Bitacora" />
         </EntityContainer>
         <EntityType Name="AnalistasC">
           <Key>
@@ -72,6 +85,17 @@
           <Property Name="idAnalistaC" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NombreCompleto" Type="String" Nullable="false" MaxLength="350" FixedLength="false" Unicode="false" />
           <Property Name="Fecha" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Bitacora">
+          <Key>
+            <PropertyRef Name="idUser" />
+          </Key>
+          <Property Name="idUser" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="usuario" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="direccionIP" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="hostname" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="fechaIngreso" Type="DateTime" Precision="3" />
+          <Property Name="VisitasAlDia" Type="Int32" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -106,6 +130,18 @@
                 <ScalarProperty Name="Fecha" ColumnName="Fecha" />
                 <ScalarProperty Name="NombreCompleto" ColumnName="NombreCompleto" />
                 <ScalarProperty Name="idAnalistaC" ColumnName="idAnalistaC" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Bitacora">
+            <EntityTypeMapping TypeName="dbTuturnoModel.Bitacora">
+              <MappingFragment StoreEntitySet="Bitacora">
+                <ScalarProperty Name="VisitasAlDia" ColumnName="VisitasAlDia" />
+                <ScalarProperty Name="fechaIngreso" ColumnName="fechaIngreso" />
+                <ScalarProperty Name="hostname" ColumnName="hostname" />
+                <ScalarProperty Name="direccionIP" ColumnName="direccionIP" />
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
+                <ScalarProperty Name="idUser" ColumnName="idUser" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
