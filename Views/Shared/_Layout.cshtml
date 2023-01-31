@@ -59,6 +59,7 @@
     <div class="container body-content">
         @RenderBody()
         @{
+
             DateTime fechaCumpleañero = Model.fecha;
             DateTime proximoCumple;
             proximoCumple = new DateTime(DateTime.Now.Year, fechaCumpleañero.Month, fechaCumpleañero.Day);

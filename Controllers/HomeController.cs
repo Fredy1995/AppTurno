@@ -99,8 +99,21 @@ namespace Tuturno.Controllers
         {
             int mes = DateTime.Now.Month;
             var cumpleMes = _db.AnalistasC.Where(c => c.Fecha.Value.Month == DateTime.Now.Month).OrderBy(c => c.Fecha).ToList();
-            data.nombre = cumpleMes.Where(c => c.Fecha.Value.Day > DateTime.Now.Day).Select(c => c.NombreCompleto).FirstOrDefault();
-            data.fecha = Convert.ToDateTime(cumpleMes.Where(c => c.Fecha.Value.Day > DateTime.Now.Day).Select(c => c.Fecha).FirstOrDefault());
+            var RestanPorCumplir = cumpleMes.Where(c => c.Fecha.Value.Day > DateTime.Now.Day).OrderBy(c => c.Fecha).ToList();
+            if (RestanPorCumplir.Count > 0 )
+            { 
+                //Se obtiene el nombre y fecha del cumpleñero del Mes Actual
+                data.nombre = cumpleMes.Where(c => c.Fecha.Value.Day > DateTime.Now.Day).Select(c => c.NombreCompleto).FirstOrDefault();
+                data.fecha = Convert.ToDateTime(cumpleMes.Where(c => c.Fecha.Value.Day > DateTime.Now.Day).Select(c => c.Fecha).FirstOrDefault());
+            }
+            else
+            {
+                //Si no hay mas cumpleaños en el mes actual, entonces se obtiene el cumpleañero del mes siguiente
+               var cumpleNextMes = _db.AnalistasC.Where(c => c.Fecha.Value.Month == DateTime.Now.Month + 1).OrderBy(c => c.Fecha).ToList();
+                data.nombre = cumpleNextMes.Select(c => c.NombreCompleto).FirstOrDefault();
+                data.fecha = Convert.ToDateTime(cumpleNextMes.Select(c => c.Fecha).FirstOrDefault());
+            }
+           
             return data;
         }
         
@@ -390,7 +403,7 @@ namespace Tuturno.Controllers
                             IP.fechaIngreso = DateTime.Now;
                             if (fechaRegistrada.ToString("dd/MM/yyyy") != DateTime.Now.ToString("dd/MM/yyyy"))
                             {
-                                IP.VisitasAlDia = 0;
+                                IP.VisitasAlDia = 1;
                             }
                             else
                             {

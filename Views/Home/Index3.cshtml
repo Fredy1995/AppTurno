@@ -114,11 +114,11 @@
                 string nombre = Model.analistasc.ToList().Where(c => c.Fecha.Value.Month == @DateTime.Now.Month).Where(x => x.Fecha.Value.Day == @DateTime.Now.Day).Select(a => a.NombreCompleto).FirstOrDefault();
                 if (nombre != null)
                 {
-                    <h1 style=""><p style="font-size: 20px; line-height: 0; margin-top: 13px;">¡¡¡FELIZ CUMPLEAÑOS </p>@nombre!!!</h1>
+                    <h1><p style="font-size: 20px; line-height: 0; margin-top: 13px;">¡¡¡FELIZ CUMPLEAÑOS </p>@nombre!!!</h1>
                 }
                 else
                 {
-                    <h1 style=""><p style="font-size: 20px; line-height: 0; margin-top: 13px;">HOY, NO HAY PASTEL <i class='far fa-sad-tear' style='font-size:24px'></i></p></h1>
+                    <h1><p style="font-size: 20px; line-height: 0; margin-top: 13px;">HOY, NO HAY PASTEL <i class='far fa-sad-tear' style='font-size:24px'></i></p></h1>
                 }
 
             }
