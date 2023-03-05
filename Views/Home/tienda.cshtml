@@ -16,24 +16,31 @@
         color: grey;
         font-size: 18px;
     }
-    .card button {
+    .card .button {
         border: none;
         outline: 0;
-        padding: 6px;
+        padding: 4px;
         color: white;
-        background-color: green;
+        background-color: #133A4B;
         text-align: center;
-        cursor: pointer;
         width: 100%;
-        font-size: 14px;
+        font-size: 10px;
+    }
+    .card:hover{
+        transform:translateY(-15px);
+        box-shadow: 0 12px 16px rgb(0,0,0,0.2);
+    }
+    .card a:hover {
+        opacity: 0.7;
+        cursor: pointer;
     }
 
-        .card button:hover {
-            opacity: 0.7;
-        }
+   
+
+      
 </style>
 <div class="mt-2 rounded text-center animate__animated animate__backInDown" style="background-color: #EBEFF1">
-    <h1>*****:::::: DULCERIA :::*****</h1>
+    <h1>*****:::: DULCERIA ::::*****</h1>
 </div>
 <br />
 <div class="row">
@@ -42,11 +49,14 @@
     {
         foreach (var item in Model.productos.ToList())
         {
-            <div class="card">
+            <div class="card animate__animated animate__flipInY">
                 <img src="@item.rutaImagen" style="width:100%" />
-                <h1>@item.descripcion</h1>
+                <h2>@item.descripcion</h2>
                 <p class="price">$@item.precio.ToString("0. ##")</p>
-                <p><button>whatssap 2241108168</button></p>
+                <p style="font-size:8px;">* Favor de pagar con cambio</p>
+                <p><div class="button">Whatssapp  <a  href="https://wa.me/+522241108168/?text=Hola!,%20gracias%20por%20escribirme,%20que%20vas%20a%20pedir%20hoy?" target="_blank">
+                <img src="~/imagenes/iconowhats.png" width="35" height="35" />
+                </a></div></p>
             </div>
         }
     }
