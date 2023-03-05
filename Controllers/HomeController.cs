@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.NetworkInformation;
@@ -441,8 +442,75 @@ namespace Tuturno.Controllers
                 }
             }
         }
+        public ActionResult tienda(FormCollection objetoForm, HttpPostedFileBase file)
+        {
+            using (var dbContextTransaction = _db.Database.BeginTransaction())
+            {
+                try
+                {
+                    if (objetoForm["btnagregar"] != null)
+                    {
+                        if(objetoForm["descripcion"] != "" && objetoForm["precio"] != "" && objetoForm["file"] != "")
+                        {
+                            var p = new Productos()
+                            {
 
-       
+                                descripcion = objetoForm["descripcion"],
+                                precio = Convert.ToDecimal(objetoForm["precio"]),
+                                rutaImagen = "/Productos/" + file.FileName
+
+                            };
+
+                            if (file != null && file.ContentLength > 0)
+                            {
+                                var fileName = Path.GetFileName(file.FileName);
+                                var path = Path.Combine(Server.MapPath("~/Productos/"), fileName);
+                                file.SaveAs(path);
+                                _db.Productos.Add(p);
+                                _db.SaveChanges();
+                                dbContextTransaction.Commit();
+                            }
+                           
+                            return RedirectToAction("tienda");
+                        }
+                      
+                      
+                    }
+                    else if (objetoForm["btneliminar"] != null)
+                    {
+                        if(objetoForm["idProducto"] != "")
+                        {
+                            int idP = Convert.ToInt32(objetoForm["idProducto"].ToString());
+                            var rutaImagen = _db.Productos.Where(c => c.idProducto == idP).Select(c => c.rutaImagen).FirstOrDefault();
+                            string nombreProdcuto = rutaImagen.Remove(0,11);
+                            var p = _db.Productos.SingleOrDefault(c => c.idProducto == idP);
+                            if (p != null)
+                            {
+
+                                _db.Productos.Remove(p);
+                                _db.SaveChanges();
+
+                                var path = Path.Combine(Server.MapPath("~/Productos/"), nombreProdcuto);
+                                System.IO.File.Delete(path);
+                                dbContextTransaction.Commit();
+                                return RedirectToAction("tienda");
+                            }
+                        }
+                        
+                    }
+                }
+                catch (Exception ex)
+                {
+                    dbContextTransaction.Rollback();
+                }
+            }
+            ProximoCumple();
+            data.productos = _db.Productos.ToList();
+            return View(data);
+        }
+
+
+
 
 
     }

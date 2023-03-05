@@ -12,6 +12,9 @@
     $("#submit").click(function () {
         alert('clicked!');
     })
+    $('.decimales').on('input', function () {
+        this.value = this.value.replace(/[^0-9,.]/g, '').replace(/,/g, '.');
+    });
 });
 const autorizacion = () => {
     let pass = document.getElementById("pwd").value;
@@ -27,6 +30,11 @@ const autorizacion = () => {
             else if (pass == "4dm1n15tr4r" && tipoTurno == "rm") {
 
                 $('#ModalAdministrarMujeres').modal('show'); //Abrir modal administrar
+                $('#ModalAutorizacion').modal('toggle'); //Cerra modal autorización
+                $('#pwd').val('');
+                $('#tTurno').val('');
+            } else if (pass == "4dm1n15tr4r" && tipoTurno == "d") {
+                $('#ModalAdministrarProductos').modal('show'); //Abrir modal administrar
                 $('#ModalAutorizacion').modal('toggle'); //Cerra modal autorización
                 $('#pwd').val('');
                 $('#tTurno').val('');
