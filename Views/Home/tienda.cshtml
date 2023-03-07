@@ -1,0 +1,143 @@
+﻿@model Tuturno.Models.modelPrincipal
+@{
+    ViewBag.Title = "tienda";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .card {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        max-width: 200px;
+        margin: auto;
+        text-align: center;
+        font-family: arial;
+    }
+
+    .price {
+        color: grey;
+        font-size: 18px;
+    }
+    .card .button {
+        border: none;
+        outline: 0;
+        padding: 4px;
+        color: white;
+        background-color: #133A4B;
+        text-align: center;
+        width: 100%;
+        font-size: 10px;
+    }
+    .card:hover{
+        transform:translateY(-15px);
+        box-shadow: 0 12px 16px rgb(0,0,0,0.2);
+    }
+    .card a:hover {
+        opacity: 0.7;
+        cursor: pointer;
+    }
+
+   
+
+      
+</style>
+<div class="mt-2 rounded text-center animate__animated animate__backInDown" style="background-color: #EBEFF1">
+    <h1>*****:::: DULCERIA ::::*****</h1>
+</div>
+<br />
+<div class="row">
+
+    @if (Model.productos.Count > 0)
+    {
+        foreach (var item in Model.productos.ToList())
+        {
+            <div class="card animate__animated animate__flipInY">
+                <img src="@item.rutaImagen" style="width:100%" />
+                <h2>@item.descripcion</h2>
+                <p class="price">$@item.precio.ToString("0. ##")</p>
+                <p style="font-size:8px;">* Favor de pagar con cambio</p>
+                <p><div class="button">Whatssapp  <a  href="https://wa.me/+522241108168/?text=Hola!,%20gracias%20por%20escribirme,%20que%20vas%20a%20pedir%20hoy?" target="_blank">
+                <img src="~/imagenes/iconowhats.png" width="35" height="35" />
+                </a></div></p>
+            </div>
+        }
+    }
+    else
+    {
+        <div class="mt-4 p-2 bg-warning text-white rounded">
+            <h1>NO HAY PRODUCTOS EXISTENTES QUE MOSTRAR :(</h1>
+        </div>
+    }
+
+
+</div>
+
+
+
+<!-- The Modal Administrar productos -->
+<div class="modal fade" id="ModalAdministrarProductos">
+    <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header text-center">
+                <h4 class="modal-title text-center">Administrar Productos</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body text-center">
+                <form method="post" action="tienda" enctype="multipart/form-data">
+                    <div class="row">
+                        <div class="col-sm-6"><input type="text" class="form-control" placeholder="IngresaDescripción"  name="descripcion"></div>
+                        <div class="col-sm-6"> <input type="text" class="form-control decimales" placeholder="$ precio"  name="precio"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-10">
+                            <input type="file" class="form-control" placeholder="Selecciona una imagen" name="file">
+                        </div>
+                        <div class="col-sm-2">
+                            <input type="submit" name="btnagregar" class="btn btn-primary" value="Agregar" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control" placeholder="ID producto" name="idProducto">
+                        </div>
+                        <div class="col-sm-5">
+
+                        </div>
+                        <div class="col-sm-2">
+                            <input type="submit" name="btneliminar" class="btn btn-danger" value="Eliminar" />
+                        </div>
+                    </div>
+                </form>
+
+                <br />
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <tr>
+                            <th>ID</th>
+                            <th>Descripción</th>
+                            <th>Precio $</th>
+                        </tr>
+
+
+                        @foreach (var item in Model.productos.ToList())
+                        {
+                            <tr>
+                                <td>@item.idProducto</td>
+                                <td>@item.descripcion</td>
+                                <td>@item.precio</td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -43,11 +43,21 @@
           <Property Name="fechaIngreso" Type="datetime" />
           <Property Name="VisitasAlDia" Type="int" />
         </EntityType>
+        <EntityType Name="Productos">
+          <Key>
+            <PropertyRef Name="idProducto" />
+          </Key>
+          <Property Name="idProducto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="precio" Type="money" Nullable="false" />
+          <Property Name="rutaImagen" Type="varchar" MaxLength="250" Nullable="false" />
+        </EntityType>
         <EntityContainer Name="dbTuturnoModelStoreContainer">
           <EntitySet Name="Analistas" EntityType="Self.Analistas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AnalistasC" EntityType="Self.AnalistasC" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AnalistasM" EntityType="Self.AnalistasM" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Bitacora" EntityType="Self.Bitacora" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Productos" EntityType="Self.Productos" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -77,6 +87,7 @@
           <EntitySet Name="AnalistasM" EntityType="Self.AnalistasM" />
           <EntitySet Name="AnalistasC" EntityType="dbTuturnoModel.AnalistasC" />
           <EntitySet Name="Bitacora" EntityType="dbTuturnoModel.Bitacora" />
+          <EntitySet Name="Productos" EntityType="dbTuturnoModel.Productos" />
         </EntityContainer>
         <EntityType Name="AnalistasC">
           <Key>
@@ -96,6 +107,15 @@
           <Property Name="hostname" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
           <Property Name="fechaIngreso" Type="DateTime" Precision="3" />
           <Property Name="VisitasAlDia" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Productos">
+          <Key>
+            <PropertyRef Name="idProducto" />
+          </Key>
+          <Property Name="idProducto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descripcion" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="precio" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="rutaImagen" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -142,6 +162,16 @@
                 <ScalarProperty Name="direccionIP" ColumnName="direccionIP" />
                 <ScalarProperty Name="usuario" ColumnName="usuario" />
                 <ScalarProperty Name="idUser" ColumnName="idUser" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Productos">
+            <EntityTypeMapping TypeName="dbTuturnoModel.Productos">
+              <MappingFragment StoreEntitySet="Productos">
+                <ScalarProperty Name="rutaImagen" ColumnName="rutaImagen" />
+                <ScalarProperty Name="precio" ColumnName="precio" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="idProducto" ColumnName="idProducto" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
