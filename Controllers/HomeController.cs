@@ -120,7 +120,7 @@ namespace Tuturno.Controllers
         
         public ActionResult Index2(FormCollection objetoForm)
         {
-
+            Bitacora();
             ActualizaTurnoAutomaticoM();
             using (var dbContextTransaction = _db.Database.BeginTransaction())
             {
@@ -193,6 +193,7 @@ namespace Tuturno.Controllers
 
         public ActionResult Index3(FormCollection objetoForm)
         {
+            Bitacora();
             using (var dbContextTransaction = _db.Database.BeginTransaction())
             {
                 try
@@ -444,6 +445,7 @@ namespace Tuturno.Controllers
         }
         public ActionResult tienda(FormCollection objetoForm, HttpPostedFileBase file)
         {
+            Bitacora();
             using (var dbContextTransaction = _db.Database.BeginTransaction())
             {
                 try
@@ -457,7 +459,7 @@ namespace Tuturno.Controllers
 
                                 descripcion = objetoForm["descripcion"],
                                 precio = Convert.ToDecimal(objetoForm["precio"]),
-                                rutaImagen = "/Productos/" + file.FileName
+                                rutaImagen = "../Productos/" + file.FileName
 
                             };
 
@@ -482,7 +484,7 @@ namespace Tuturno.Controllers
                         {
                             int idP = Convert.ToInt32(objetoForm["idProducto"].ToString());
                             var rutaImagen = _db.Productos.Where(c => c.idProducto == idP).Select(c => c.rutaImagen).FirstOrDefault();
-                            string nombreProdcuto = rutaImagen.Remove(0,11);
+                            string nombreProdcuto = rutaImagen.Remove(0,13);
                             var p = _db.Productos.SingleOrDefault(c => c.idProducto == idP);
                             if (p != null)
                             {
@@ -490,7 +492,7 @@ namespace Tuturno.Controllers
                                 _db.Productos.Remove(p);
                                 _db.SaveChanges();
 
-                                var path = Path.Combine(Server.MapPath("~/Productos/"), nombreProdcuto);
+                                var path = Path.Combine(Server.MapPath("../Productos/"), nombreProdcuto);
                                 System.IO.File.Delete(path);
                                 dbContextTransaction.Commit();
                                 return RedirectToAction("tienda");

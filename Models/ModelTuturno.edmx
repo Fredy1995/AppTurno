@@ -48,9 +48,9 @@
             <PropertyRef Name="idProducto" />
           </Key>
           <Property Name="idProducto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="descripcion" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="250" Nullable="false" />
           <Property Name="precio" Type="money" Nullable="false" />
-          <Property Name="rutaImagen" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="rutaImagen" Type="varchar" MaxLength="150" Nullable="false" />
         </EntityType>
         <EntityContainer Name="dbTuturnoModelStoreContainer">
           <EntitySet Name="Analistas" EntityType="Self.Analistas" Schema="dbo" store:Type="Tables" />
@@ -113,9 +113,9 @@
             <PropertyRef Name="idProducto" />
           </Key>
           <Property Name="idProducto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="descripcion" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="descripcion" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
           <Property Name="precio" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
-          <Property Name="rutaImagen" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="rutaImagen" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
