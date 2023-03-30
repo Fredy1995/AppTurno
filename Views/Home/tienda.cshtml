@@ -4,6 +4,56 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <style>
+    img:hover {
+        animation: shake 0.5s;
+        animation-iteration-count: infinite;
+    }
+
+    @@keyframes shake {
+        0% {
+            transform: translate(1px, 1px) rotate(0deg);
+        }
+
+        10% {
+            transform: translate(-1px, -2px) rotate(-1deg);
+        }
+
+        20% {
+            transform: translate(-3px, 0px) rotate(1deg);
+        }
+
+        30% {
+            transform: translate(3px, 2px) rotate(0deg);
+        }
+
+        40% {
+            transform: translate(1px, -1px) rotate(1deg);
+        }
+
+        50% {
+            transform: translate(-1px, 2px) rotate(-1deg);
+        }
+
+        60% {
+            transform: translate(-3px, 1px) rotate(0deg);
+        }
+
+        70% {
+            transform: translate(3px, 1px) rotate(-1deg);
+        }
+
+        80% {
+            transform: translate(-1px, -1px) rotate(1deg);
+        }
+
+        90% {
+            transform: translate(1px, 2px) rotate(0deg);
+        }
+
+        100% {
+            transform: translate(1px, -2px) rotate(-1deg);
+        }
+    }
     .card {
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
         max-width: 200px;
@@ -25,7 +75,7 @@
         background-color: #133A4B;
         text-align: center;
         width: 100%;
-        font-size: 10px;
+        font-size: 12px;
     }
 
     .card:hover {
@@ -36,6 +86,10 @@
     .card a:hover {
         opacity: 0.7;
         cursor: pointer;
+    }
+    a:link, a:visited, a:active {
+        text-decoration: none;
+        color: white;
     }
 </style>
 
@@ -50,13 +104,11 @@
             foreach (var item in Model.productos.ToList())
             {
                 <div class="card animate__animated animate__flipInY">
-                    <img src="@item.rutaImagen" style="width:100%" />
+                    <img src="@item.rutaImagen" style="width:100%;" />
                     <h2>@item.descripcion</h2>
                     <p class="price">$@item.precio.ToString("0. ##")</p>
                     <p style="font-size:8px;">* Favor de pagar con cambio</p>
-                    <p><div class="button">Whatssapp  <a  href="https://wa.me/+522211835077/?text=Hola!,%20gracias%20por%20escribirme,%20que%20vas%20a%20pedir%20hoy?" target="_blank">
-                    <img src="~/imagenes/iconowhats.png" width="35" height="35" />
-                    </a></div></p>
+                    <p><div class="button" data-bs-toggle="tooltip" title="¡Contacta al vendedor aquí!"><a  href="https://wa.me/+522211835077/?text=Hola!,%20gracias%20por%20escribirme,%20que%20vas%20a%20pedir%20hoy?" target="_blank">Clic aquí para pedir</a></div></p>
                 </div>
             }
         }

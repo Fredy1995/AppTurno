@@ -98,6 +98,7 @@ namespace Tuturno.Controllers
 
         public modelPrincipal ProximoCumple()
         {
+            int contador = 1,HayCumpleañeros =0;
             int mes = DateTime.Now.Month;
             var cumpleMes = _db.AnalistasC.Where(c => c.Fecha.Value.Month == DateTime.Now.Month).OrderBy(c => c.Fecha).ToList();
             var RestanPorCumplir = cumpleMes.Where(c => c.Fecha.Value.Day > DateTime.Now.Day).OrderBy(c => c.Fecha).ToList();
@@ -110,9 +111,17 @@ namespace Tuturno.Controllers
             else
             {
                 //Si no hay mas cumpleaños en el mes actual, entonces se obtiene el cumpleañero del mes siguiente
-               var cumpleNextMes = _db.AnalistasC.Where(c => c.Fecha.Value.Month == DateTime.Now.Month + 1).OrderBy(c => c.Fecha).ToList();
-                data.nombre = cumpleNextMes.Select(c => c.NombreCompleto).FirstOrDefault();
-                data.fecha = Convert.ToDateTime(cumpleNextMes.Select(c => c.Fecha).FirstOrDefault());
+                do
+                {
+                    var cumpleNextMes = _db.AnalistasC.Where(c => c.Fecha.Value.Month == DateTime.Now.Month + contador).OrderBy(c => c.Fecha).ToList();
+                    HayCumpleañeros = cumpleNextMes.Count();
+                    data.nombre = cumpleNextMes.Select(c => c.NombreCompleto).FirstOrDefault();
+                    data.fecha = Convert.ToDateTime(cumpleNextMes.Select(c => c.Fecha).FirstOrDefault());
+                    contador++;
+                } while (HayCumpleañeros < 1);
+                   
+                
+               
             }
            
             return data;

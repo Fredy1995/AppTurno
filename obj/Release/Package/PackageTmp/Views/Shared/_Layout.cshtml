@@ -51,13 +51,14 @@
         
     </div>
     <div id="mySidenav" class="sidenav animate__animated animate__fadeInRight ">
-        <a href="@Url.Action("Index","Home")" id="agua" class=" bg-info">Agua</a>
-        <a href="@Url.Action("Index2","Home")" id="refri" style=" background-color: #08AB98;">Refri&Micro</a>
-        <a href="@Url.Action("Index3","Home")" id="cumple" style="background-color: #BA8EC3;">Cumpleaños</a>
-        <a href="@Url.Action("tienda","Home")" id="dulceria" style="background-color: #8516F3;">Dulcería</a>
+        <a data-bs-toggle="tooltip" title="Saber a quien le toca el agua" href="@Url.Action("Index","Home")" id="agua" class=" bg-info">Agua</a>
+        <a data-bs-toggle="tooltip" title="Saber a quien le toca limpiar el refrigerador y el microondas" href="@Url.Action("Index2","Home")" id="refri" style=" background-color: #08AB98;">Refri&Micro</a>
+        <a data-bs-toggle="tooltip" title="¿Quien cumple años hoy?" href="@Url.Action("Index3","Home")" id="cumple" style="background-color: #BA8EC3;">Cumpleaños</a>
+        <a data-bs-toggle="tooltip" title="¿Gustas pedir un dulce?" href="@Url.Action("tienda","Home")" id="dulceria" style="background-color: #8516F3;">Dulcería</a>
     </div>
     <br /><br /><br />
     <div class="container body-content">
+
         @RenderBody()
         @{
 
@@ -79,7 +80,6 @@
         }
         <hr />
 
-
         <footer>
             @*****************************************************Cambios aplicados*******************@
             @*<p>&copy; @DateTime.Now.Year - Tecnologías .NET - AF - V. 1.0.17.11.2022</p> -Solo tenia el calendario de agua*@
@@ -88,7 +88,9 @@
             @*<p>&copy; @DateTime.Now.Year - Tecnologías .NET - AF - V. 3.0.10.01.2023</p> - Se agregó Boton de whatssap y calculo de próximo cumpleaños*@
             @*<p>&copy; @DateTime.Now.Year - Tecnologías .NET - AF - V. 3.1.10.01.2023</p>  - Se agregó imagen de carga*@
             @**<p>&copy; @DateTime.Now.Year - Tecnologías .NET - AF - V. 3.2.25.01.2023</p> -Se agregó una bitacora de registro de visitas*@
-            <p>&copy; @DateTime.Now.Year - Tecnologías .NET - AF - V. 4.3.07.03.2023</p> @*-Se agregó modulo para dulcería, publicar productos y que todos lo puedan ver y pedir por whatssap*@
+            @*<p>&copy; @DateTime.Now.Year - Tecnologías .NET - AF - V. 4.3.07.03.2023</p> @*-Se agregó modulo para dulcería, publicar productos y que todos lo puedan ver y pedir por whatssap*@
+            @*<p>&copy; @DateTime.Now.Year - Tecnologías .NET - AF - V. 4.4.29.03.2023</p> @*-Se corrió el error de calcular el próximo cumpleaños *@
+            <p>&copy; @DateTime.Now.Year - Tecnologías .NET - AF - V. 4.5.30.03.2023</p> @*-Se modificó la vista tienda, se agregaron tooltips, y se modificó el botón whattsapp *@
         </footer>
     </div>
 

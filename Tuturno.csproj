@@ -198,6 +198,22 @@
       <DependentUpon>ModelTuturno.edmx</DependentUpon>
       <LastGenOutput>ModelTuturno.cs</LastGenOutput>
     </Content>
+    <Content Include="Productos\bocadin.png" />
+    <Content Include="Productos\bombonChocolate.jfif" />
+    <Content Include="Productos\chicles.jpg" />
+    <Content Include="Productos\duvalin.jfif" />
+    <Content Include="Productos\kotex.jpg" />
+    <Content Include="Productos\kotexNocturna.jpg" />
+    <Content Include="Productos\kranky.jpg" />
+    <Content Include="Productos\lunetas.jpg" />
+    <Content Include="Productos\obleas.jfif" />
+    <Content Include="Productos\palanqueta.jfif" />
+    <Content Include="Productos\pulparindo.jfif" />
+    <Content Include="Productos\rockabola.jfif" />
+    <Content Include="Productos\sandia.jfif" />
+    <Content Include="Productos\tinlarin.png" />
+    <Content Include="Productos\trabalenguas.jfif" />
+    <Content Include="Productos\winis.jfif" />
     <Content Include="Scripts\animaciones.js" />
     <Content Include="Scripts\autorizacionjs.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
@@ -272,7 +288,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Productos\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
