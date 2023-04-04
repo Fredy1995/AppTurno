@@ -22,7 +22,7 @@ namespace Tuturno.Controllers
         private modelPrincipal data = new modelPrincipal();
         public ActionResult Index(FormCollection objetoForm)
         {
-            Bitacora();
+            string ipobtenida = Bitacora();
             ActualizaTurnoAutomatico();
             using (var dbContextTransaction = _db.Database.BeginTransaction())
             {
@@ -85,15 +85,23 @@ namespace Tuturno.Controllers
                     }
                   
                 }
-                catch (Exception ex)
+                catch (Exception )
                 {
                     dbContextTransaction.Rollback();
                 }
             }
             ProximoCumple();
             data.analist = _db.Analistas.ToList();
-            
-            return View(data);
+            TempData["VerTodo"] = IdentificaArea(ipobtenida);
+            if (Convert.ToBoolean(TempData["VerTodo"]))
+            {
+                return View(data);
+            }
+            else
+            {
+
+                return RedirectToAction("tienda");
+            }
         }
 
         public modelPrincipal ProximoCumple()
@@ -129,7 +137,7 @@ namespace Tuturno.Controllers
         
         public ActionResult Index2(FormCollection objetoForm)
         {
-            Bitacora();
+            string ipobtenida = Bitacora();
             ActualizaTurnoAutomaticoM();
             using (var dbContextTransaction = _db.Database.BeginTransaction())
             {
@@ -188,7 +196,7 @@ namespace Tuturno.Controllers
                     }
 
                 }
-                catch (Exception ex)
+                catch (Exception )
                 {
                     dbContextTransaction.Rollback();
                 }
@@ -196,13 +204,21 @@ namespace Tuturno.Controllers
             ProximoCumple();
             //var data = _db.AnalistasM.ToList();
             data.analistm = _db.AnalistasM.ToList();
-           
-            return View(data);
+            TempData["VerTodo"] = IdentificaArea(ipobtenida);
+            if (Convert.ToBoolean(TempData["VerTodo"]))
+            {
+                return View(data);
+            }
+            else
+            {
+
+                return RedirectToAction("tienda");
+            }
         }
 
         public ActionResult Index3(FormCollection objetoForm)
         {
-            Bitacora();
+            string ipobtenida = Bitacora();
             using (var dbContextTransaction = _db.Database.BeginTransaction())
             {
                 try
@@ -235,7 +251,7 @@ namespace Tuturno.Controllers
                         }
                     }
                 }
-                catch (Exception ex)
+                catch (Exception )
                 {
                     dbContextTransaction.Rollback();
                 }
@@ -243,7 +259,16 @@ namespace Tuturno.Controllers
             ProximoCumple();
             //var data = _db.AnalistasC.ToList();
             data.analistasc = _db.AnalistasC.ToList();
-            return View(data);
+            TempData["VerTodo"] = IdentificaArea(ipobtenida);
+            if (Convert.ToBoolean(TempData["VerTodo"]))
+            {
+                return View(data);
+            }
+            else
+            {
+
+                return RedirectToAction("tienda");
+            }
         }
         public void ActualizaTurnoAutomaticoM()
         {
@@ -305,7 +330,7 @@ namespace Tuturno.Controllers
                     }
 
                 }
-                catch (Exception ex)
+                catch (Exception )
                 {
                     dbContextTransaction.Rollback();
                 }
@@ -385,14 +410,32 @@ namespace Tuturno.Controllers
                     }
 
                 }
-                catch (Exception ex)
+                catch (Exception )
                 {
                     dbContextTransaction.Rollback();
                 }
             }
         }
-
-        public void Bitacora()
+        public bool IdentificaArea(string ipobtenida)
+        {
+            var idArea = _db.Bitacora.Where(c => c.direccionIP == ipobtenida).Select(c => c.idArea).FirstOrDefault();
+            if (idArea != null)
+            {
+                if (idArea == 4)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public string Bitacora()
         {
           
             using (var dbContextTransaction = _db.Database.BeginTransaction())
@@ -430,7 +473,7 @@ namespace Tuturno.Controllers
                         //No existe IP entonces agregó a la BD
                         var ip = new Bitacora()
                         {
-
+                            idArea = 404, //ip y area no identificada
                             usuario = "Anonimo",
                             direccionIP = ipobtenida,
                             hostname = Dns.GetHostEntry(Request.ServerVariables["REMOTE_HOST"]).HostName,
@@ -446,15 +489,16 @@ namespace Tuturno.Controllers
                         dbContextTransaction.Commit();
                     }
                 }
-                catch (Exception ex)
+                catch (Exception )
                 {
                     dbContextTransaction.Rollback();
                 }
+                return ipobtenida;
             }
         }
         public ActionResult tienda(FormCollection objetoForm, HttpPostedFileBase file)
         {
-            Bitacora();
+            string ipobtenida = Bitacora();
             using (var dbContextTransaction = _db.Database.BeginTransaction())
             {
                 try
@@ -510,13 +554,14 @@ namespace Tuturno.Controllers
                         
                     }
                 }
-                catch (Exception ex)
+                catch (Exception )
                 {
                     dbContextTransaction.Rollback();
                 }
             }
             ProximoCumple();
             data.productos = _db.Productos.ToList();
+            TempData["VerTodo"] = IdentificaArea(ipobtenida);
             return View(data);
         }
 

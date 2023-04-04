@@ -10,6 +10,8 @@
         <EntityTypeShape EntityType="dbTuturnoModel.AnalistasC" Width="1.5" PointX="0.75" PointY="3.75" />
         <EntityTypeShape EntityType="dbTuturnoModel.Bitacora" Width="1.5" PointX="3.375" PointY="3.75" />
         <EntityTypeShape EntityType="dbTuturnoModel.Productos" Width="1.5" PointX="5.375" PointY="0.75" />
+        <EntityTypeShape EntityType="dbTuturnoModel.Areas" Width="1.5" PointX="1.125" PointY="6.25" />
+        <AssociationConnector Association="dbTuturnoModel.FK_Bitacora_Areas" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

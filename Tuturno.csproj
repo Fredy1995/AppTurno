@@ -135,6 +135,9 @@
     <Compile Include="Models\AnalistasM.cs">
       <DependentUpon>ModelTuturno.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Areas.cs">
+      <DependentUpon>ModelTuturno.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Bitacora.cs">
       <DependentUpon>ModelTuturno.tt</DependentUpon>
     </Compile>
