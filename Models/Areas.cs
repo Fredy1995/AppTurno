@@ -12,16 +12,18 @@ namespace Tuturno.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Bitacora
+    public partial class Areas
     {
-        public int idUser { get; set; }
-        public string usuario { get; set; }
-        public string direccionIP { get; set; }
-        public string hostname { get; set; }
-        public Nullable<System.DateTime> fechaIngreso { get; set; }
-        public Nullable<int> VisitasAlDia { get; set; }
-        public Nullable<int> idArea { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Areas()
+        {
+            this.Bitacora = new HashSet<Bitacora>();
+        }
     
-        public virtual Areas Areas { get; set; }
+        public int idArea { get; set; }
+        public string nombreArea { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Bitacora> Bitacora { get; set; }
     }
 }

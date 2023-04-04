@@ -32,11 +32,19 @@
           <Property Name="Turno" Type="int" Nullable="false" />
           <Property Name="Fecha" Type="datetime" />
         </EntityType>
+        <EntityType Name="Areas">
+          <Key>
+            <PropertyRef Name="idArea" />
+          </Key>
+          <Property Name="idArea" Type="int" Nullable="false" />
+          <Property Name="nombreArea" Type="varchar" MaxLength="150" Nullable="false" />
+        </EntityType>
         <EntityType Name="Bitacora">
           <Key>
             <PropertyRef Name="idUser" />
           </Key>
           <Property Name="idUser" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idArea" Type="int" />
           <Property Name="usuario" Type="varchar" MaxLength="150" />
           <Property Name="direccionIP" Type="varchar" MaxLength="80" />
           <Property Name="hostname" Type="varchar" MaxLength="80" />
@@ -52,12 +60,29 @@
           <Property Name="precio" Type="money" Nullable="false" />
           <Property Name="rutaImagen" Type="varchar" MaxLength="150" Nullable="false" />
         </EntityType>
+        <Association Name="FK_Bitacora_Areas">
+          <End Role="Areas" Type="Self.Areas" Multiplicity="0..1" />
+          <End Role="Bitacora" Type="Self.Bitacora" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Areas">
+              <PropertyRef Name="idArea" />
+            </Principal>
+            <Dependent Role="Bitacora">
+              <PropertyRef Name="idArea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="dbTuturnoModelStoreContainer">
           <EntitySet Name="Analistas" EntityType="Self.Analistas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AnalistasC" EntityType="Self.AnalistasC" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AnalistasM" EntityType="Self.AnalistasM" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Areas" EntityType="Self.Areas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Bitacora" EntityType="Self.Bitacora" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Productos" EntityType="Self.Productos" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Bitacora_Areas" Association="Self.FK_Bitacora_Areas">
+            <End Role="Areas" EntitySet="Areas" />
+            <End Role="Bitacora" EntitySet="Bitacora" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -88,6 +113,11 @@
           <EntitySet Name="AnalistasC" EntityType="dbTuturnoModel.AnalistasC" />
           <EntitySet Name="Bitacora" EntityType="dbTuturnoModel.Bitacora" />
           <EntitySet Name="Productos" EntityType="dbTuturnoModel.Productos" />
+          <EntitySet Name="Areas" EntityType="dbTuturnoModel.Areas" />
+          <AssociationSet Name="FK_Bitacora_Areas" Association="dbTuturnoModel.FK_Bitacora_Areas">
+            <End Role="Areas" EntitySet="Areas" />
+            <End Role="Bitacora" EntitySet="Bitacora" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="AnalistasC">
           <Key>
@@ -107,6 +137,8 @@
           <Property Name="hostname" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
           <Property Name="fechaIngreso" Type="DateTime" Precision="3" />
           <Property Name="VisitasAlDia" Type="Int32" />
+          <Property Name="idArea" Type="Int32" />
+          <NavigationProperty Name="Areas" Relationship="dbTuturnoModel.FK_Bitacora_Areas" FromRole="Bitacora" ToRole="Areas" />
         </EntityType>
         <EntityType Name="Productos">
           <Key>
@@ -117,6 +149,26 @@
           <Property Name="precio" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
           <Property Name="rutaImagen" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="Areas">
+          <Key>
+            <PropertyRef Name="idArea" />
+          </Key>
+          <Property Name="idArea" Type="Int32" Nullable="false" />
+          <Property Name="nombreArea" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Bitacora" Relationship="dbTuturnoModel.FK_Bitacora_Areas" FromRole="Areas" ToRole="Bitacora" />
+        </EntityType>
+        <Association Name="FK_Bitacora_Areas">
+          <End Type="dbTuturnoModel.Areas" Role="Areas" Multiplicity="0..1" />
+          <End Type="dbTuturnoModel.Bitacora" Role="Bitacora" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Areas">
+              <PropertyRef Name="idArea" />
+            </Principal>
+            <Dependent Role="Bitacora">
+              <PropertyRef Name="idArea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -156,6 +208,7 @@
           <EntitySetMapping Name="Bitacora">
             <EntityTypeMapping TypeName="dbTuturnoModel.Bitacora">
               <MappingFragment StoreEntitySet="Bitacora">
+                <ScalarProperty Name="idArea" ColumnName="idArea" />
                 <ScalarProperty Name="VisitasAlDia" ColumnName="VisitasAlDia" />
                 <ScalarProperty Name="fechaIngreso" ColumnName="fechaIngreso" />
                 <ScalarProperty Name="hostname" ColumnName="hostname" />
@@ -172,6 +225,14 @@
                 <ScalarProperty Name="precio" ColumnName="precio" />
                 <ScalarProperty Name="descripcion" ColumnName="descripcion" />
                 <ScalarProperty Name="idProducto" ColumnName="idProducto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Areas">
+            <EntityTypeMapping TypeName="dbTuturnoModel.Areas">
+              <MappingFragment StoreEntitySet="Areas">
+                <ScalarProperty Name="nombreArea" ColumnName="nombreArea" />
+                <ScalarProperty Name="idArea" ColumnName="idArea" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

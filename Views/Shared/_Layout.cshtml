@@ -19,8 +19,6 @@
     <script>window.rwbp = { email: 'fredo199575@gmail.com', phone: '+522241108168', message: '¡Hola!, Duda o sugerencia, contacta al desarrollador', lang: 'es' }</script>
     <script defer async src='https://duz4dqsaqembt.cloudfront.net/client/whats.js'></script>
 
-    <!-- Start of servicio publico Zendesk Widget script -->
-    <!--<script id="ze-snippet" src="https://static.zdassets.com/ekr/snippet.js?key=a7183025-c795-45d9-a6aa-1b2e6a3d42ab"></script>--><!-- End of serviciopublico Zendesk Widget script -->
 </head>
 <body>
 
@@ -48,51 +46,65 @@
     </nav>
 
     <div class="loader">
-        
+
     </div>
-    <div id="mySidenav" class="sidenav animate__animated animate__fadeInRight ">
-        <a data-bs-toggle="tooltip" title="Saber a quien le toca el agua" href="@Url.Action("Index","Home")" id="agua" class=" bg-info">Agua</a>
-        <a data-bs-toggle="tooltip" title="Saber a quien le toca limpiar el refrigerador y el microondas" href="@Url.Action("Index2","Home")" id="refri" style=" background-color: #08AB98;">Refri&Micro</a>
-        <a data-bs-toggle="tooltip" title="¿Quien cumple años hoy?" href="@Url.Action("Index3","Home")" id="cumple" style="background-color: #BA8EC3;">Cumpleaños</a>
-        <a data-bs-toggle="tooltip" title="¿Gustas pedir un dulce?" href="@Url.Action("tienda","Home")" id="dulceria" style="background-color: #8516F3;">Dulcería</a>
-    </div>
+    @if (Convert.ToBoolean(TempData["VerTodo"]))
+    {
+        <div id="mySidenav" class="sidenav animate__animated animate__fadeInRight ">
+            <a data-bs-toggle="tooltip" title="Saber a quien le toca el agua" href="@Url.Action("Index","Home")" id="agua" class=" bg-info">Agua</a>
+            <a data-bs-toggle="tooltip" title="Saber a quien le toca limpiar el refrigerador y el microondas" href="@Url.Action("Index2","Home")" id="refri" style=" background-color: #08AB98;">Refri&Micro</a>
+            <a data-bs-toggle="tooltip" title="¿Quien cumple años hoy?" href="@Url.Action("Index3","Home")" id="cumple" style="background-color: #BA8EC3;">Cumpleaños</a>
+            <a data-bs-toggle="tooltip" title="¿Gustas pedir un dulce?" href="@Url.Action("tienda","Home")" id="dulceria" style="background-color: #8516F3;">Dulcería</a>
+        </div>
+    }
+
     <br /><br /><br />
-    <div class="container body-content">
+                <div class="container body-content">
 
-        @RenderBody()
-        @{
+                    @RenderBody()
+                    @{
+                        string Area = "";
+                        DateTime fechaCumpleañero = Model.fecha;
+                        DateTime proximoCumple;
+                        proximoCumple = new DateTime(DateTime.Now.Year, fechaCumpleañero.Month, fechaCumpleañero.Day);
+                        TimeSpan faltan = proximoCumple.Subtract(DateTime.Now);
+                        if (Convert.ToBoolean(TempData["VerTodo"]))
+                        {
+                            <div class="content content2 toast show animate__animated animate__backInLeft" style="position: absolute; top: 100px; left: 0px; z-index: 1; font-size: 16px; display: none;">
+                                <div class="toast-header">
+                                    <strong class="me-auto">Próximo <a href="@Url.Action("Index3","Home")" style="color: #133A4B; text-decoration: none;">cumpleaños</a>,@fechaCumpleañero.Day de @fechaCumpleañero.ToString("MMMM") <i class='fas fa-birthday-cake'></i></strong>
+                                    <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+                                </div>
+                                <div class="toast-body">
+                                    <h4>@Model.nombre</h4>
+                                    Faltan:<h4> @faltan.Days días: @faltan.Hours Horas: @faltan.Minutes Minutos</h4>
+                                </div>
+                            </div>
+                            Area = "SIT";
+                        }
+                        else
+                        {
+                            Area = "No identificado";
+                        }
 
-            DateTime fechaCumpleañero = Model.fecha;
-            DateTime proximoCumple;
-            proximoCumple = new DateTime(DateTime.Now.Year, fechaCumpleañero.Month, fechaCumpleañero.Day);
-            TimeSpan faltan = proximoCumple.Subtract(DateTime.Now);
+                    }
+                    <hr />
 
-            <div class="content content2 toast show animate__animated animate__backInLeft" style="position: absolute; top: 100px; left: 0px; z-index: 1; font-size: 16px; display: none;">
-                <div class="toast-header">
-                    <strong class="me-auto">Próximo <a href="@Url.Action("Index3","Home")" style="color: #133A4B; text-decoration: none;">cumpleaños</a>,@fechaCumpleañero.Day de @fechaCumpleañero.ToString("MMMM") <i class='fas fa-birthday-cake'></i></strong>
-                    <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+                    <footer>
+                       
+                        @*****************************************************Cambios aplicados*******************@
+                        @*<p>&copy; @DateTime.Now.Year - Tecnologías .NET - AF - V. 1.0.17.11.2022</p> -Solo tenia el calendario de agua*@
+                        @*<p>&copy; @DateTime.Now.Year - Tecnologías .NET - AF - V. 2.0.8.12.2022</p> - Solo se agregó Calendarío de limpieza de Refrigerador y Microondas*@
+                        @*<p>&copy; @DateTime.Now.Year - Tecnologías .NET - AF - V. 2.0.05.01.2023</p> - Solo se agregó Calendario de cumpleaños*@
+                        @*<p>&copy; @DateTime.Now.Year - Tecnologías .NET - AF - V. 3.0.10.01.2023</p> - Se agregó Boton de whatssap y calculo de próximo cumpleaños*@
+                        @*<p>&copy; @DateTime.Now.Year - Tecnologías .NET - AF - V. 3.1.10.01.2023</p>  - Se agregó imagen de carga*@
+                        @**<p>&copy; @DateTime.Now.Year - Tecnologías .NET - AF - V. 3.2.25.01.2023</p> -Se agregó una bitacora de registro de visitas*@
+                        @*<p>&copy; @DateTime.Now.Year - Tecnologías .NET - AF - V. 4.3.07.03.2023</p> @*-Se agregó modulo para dulcería, publicar productos y que todos lo puedan ver y pedir por whatssap*@
+                        @*<p>&copy; @DateTime.Now.Year - Tecnologías .NET - AF - V. 4.4.29.03.2023</p> @*-Se corrió el error de calcular el próximo cumpleaños *@
+                        @*<p>&copy; @DateTime.Now.Year - Tecnologías .NET - AF - V. 4.5.30.03.2023</p> @*-Se modificó la vista tienda, se agregaron tooltips, y se modificó el botón whattsapp *@
+                        <p>&copy; @DateTime.Now.Year - Tecnologías .NET - AF - V. 4.6.04.04.2023 / @Area</p> @*-Se agregó funcionalidad para restringir el acceso a todas las vistas, solo cartografía podrá ver todas las vistas *@
+                    </footer>
                 </div>
-                <div class="toast-body">
-                    <h4>@Model.nombre</h4>
-                    Faltan:<h4> @faltan.Days días: @faltan.Hours Horas: @faltan.Minutes Minutos</h4>
-                </div>
-            </div>
-        }
-        <hr />
-
-        <footer>
-            @*****************************************************Cambios aplicados*******************@
-            @*<p>&copy; @DateTime.Now.Year - Tecnologías .NET - AF - V. 1.0.17.11.2022</p> -Solo tenia el calendario de agua*@
-            @*<p>&copy; @DateTime.Now.Year - Tecnologías .NET - AF - V. 2.0.8.12.2022</p> - Solo se agregó Calendarío de limpieza de Refrigerador y Microondas*@
-            @*<p>&copy; @DateTime.Now.Year - Tecnologías .NET - AF - V. 2.0.05.01.2023</p> - Solo se agregó Calendario de cumpleaños*@
-            @*<p>&copy; @DateTime.Now.Year - Tecnologías .NET - AF - V. 3.0.10.01.2023</p> - Se agregó Boton de whatssap y calculo de próximo cumpleaños*@
-            @*<p>&copy; @DateTime.Now.Year - Tecnologías .NET - AF - V. 3.1.10.01.2023</p>  - Se agregó imagen de carga*@
-            @**<p>&copy; @DateTime.Now.Year - Tecnologías .NET - AF - V. 3.2.25.01.2023</p> -Se agregó una bitacora de registro de visitas*@
-            @*<p>&copy; @DateTime.Now.Year - Tecnologías .NET - AF - V. 4.3.07.03.2023</p> @*-Se agregó modulo para dulcería, publicar productos y que todos lo puedan ver y pedir por whatssap*@
-            @*<p>&copy; @DateTime.Now.Year - Tecnologías .NET - AF - V. 4.4.29.03.2023</p> @*-Se corrió el error de calcular el próximo cumpleaños *@
-            <p>&copy; @DateTime.Now.Year - Tecnologías .NET - AF - V. 4.5.30.03.2023</p> @*-Se modificó la vista tienda, se agregaron tooltips, y se modificó el botón whattsapp *@
-        </footer>
-    </div>
 
     <!-- The Modal -->
     <div class="modal" id="ModalAutorizacion">
