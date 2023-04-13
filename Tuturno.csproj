@@ -189,6 +189,7 @@
     <Content Include="imagenes\cargandoGarrafon.jpg" />
     <Content Include="imagenes\cumple.jpg" />
     <Content Include="imagenes\iconowhats.png" />
+    <Content Include="imagenes\infografia.jpg" />
     <Content Include="imagenes\limpieza.jpg" />
     <Content Include="imagenes\turno.jpg" />
     <Content Include="Models\ModelTuturno.Context.tt">
