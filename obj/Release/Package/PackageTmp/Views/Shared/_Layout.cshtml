@@ -21,7 +21,17 @@
 
 </head>
 <body>
-
+<style>
+    .infografia {
+        position: absolute;
+        background: white;
+        width:280px;
+        right:20px;
+        top: 135px;
+        height: 100px;
+        z-index:9;
+    }
+</style>
 
     <nav class="navbar navbar-expand-sm navbar-dark fixed-top " style="background-color: #133A4B;">
         <div class="container-fluid">
@@ -45,9 +55,9 @@
         </div>
     </nav>
 
-    <div class="loader">
+    <div class="loader"></div>
+    
 
-    </div>
     @if (Convert.ToBoolean(TempData["VerTodo"]))
     {
         <div id="mySidenav" class="sidenav animate__animated animate__fadeInRight ">
@@ -60,6 +70,19 @@
 
     <br /><br /><br />
                 <div class="container body-content">
+
+                    <div class="toast show infografia animate__animated animate__bounceInLeft">
+                        <div class="toast-header">
+                            <strong class="me-auto"></strong>
+                            <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+                        </div>
+                        <div class="shadow" >
+                            <a href="https://declaranet.puebla.gob.mx/" target="_blank"><img class="img-fluid" src="~/imagenes/infografia.jpg" width="280" /></a>
+                        </div>
+                    </div>
+                    @*<div class="infografia animate__animated animate__bounceInLeft">
+                        <img class="img-fluid" src="~/imagenes/infografia.jpg" width="280" />
+                    </div>*@
 
                     @RenderBody()
                     @{
@@ -88,10 +111,11 @@
                         }
 
                     }
-                    <hr />
 
+                    <hr />
                     <footer>
-                       
+                        <span class="badge  bg-secondary"><a href="https://miasistencia.puebla.gob.mx/Home/Index" target="_blank" data-bs-toggle="tooltip" title="Sistema de control de asistencia" style="color:white; text-decoration: none;">miasistencia.puebla</a></span>
+                        <span class="badge  bg-secondary"><a href="https://comprobantedepago.puebla.gob.mx/Home/Index" target="_blank" data-bs-toggle="tooltip" title="Comprobante de pago - Secretaría de planeación y finanzas" style="color:white; text-decoration: none;">comprobantedepago.puebla</a></span>
                         @*****************************************************Cambios aplicados*******************@
                         @*<p>&copy; @DateTime.Now.Year - Tecnologías .NET - AF - V. 1.0.17.11.2022</p> -Solo tenia el calendario de agua*@
                         @*<p>&copy; @DateTime.Now.Year - Tecnologías .NET - AF - V. 2.0.8.12.2022</p> - Solo se agregó Calendarío de limpieza de Refrigerador y Microondas*@
@@ -102,7 +126,8 @@
                         @*<p>&copy; @DateTime.Now.Year - Tecnologías .NET - AF - V. 4.3.07.03.2023</p> @*-Se agregó modulo para dulcería, publicar productos y que todos lo puedan ver y pedir por whatssap*@
                         @*<p>&copy; @DateTime.Now.Year - Tecnologías .NET - AF - V. 4.4.29.03.2023</p> @*-Se corrió el error de calcular el próximo cumpleaños *@
                         @*<p>&copy; @DateTime.Now.Year - Tecnologías .NET - AF - V. 4.5.30.03.2023</p> @*-Se modificó la vista tienda, se agregaron tooltips, y se modificó el botón whattsapp *@
-                        <p>&copy; @DateTime.Now.Year - Tecnologías .NET - AF - V. 4.6.04.04.2023 / @Area</p> @*-Se agregó funcionalidad para restringir el acceso a todas las vistas, solo cartografía podrá ver todas las vistas *@
+                        @*<p>&copy; @DateTime.Now.Year - Tecnologías .NET - AF - V. 4.6.04.04.2023 / @Area </p>  @*-Se agregó funcionalidad para restringir el acceso a todas las vistas, solo cartografía podrá ver todas las vistas *@
+                        <p>&copy; @DateTime.Now.Year - Tecnologías .NET - AF - V. 4.7.13.04.2023 / @Area </p>  @*-Se revisó codigo y se agregó links para comprobante de pago y control de asistencia *@
                     </footer>
                 </div>
 
