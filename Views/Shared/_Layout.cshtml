@@ -23,7 +23,7 @@
 <body>
 <style>
     .infografia {
-        position: absolute;
+        position: fixed;
         background: white;
         width:280px;
         right:20px;
@@ -32,7 +32,7 @@
         z-index:9;
     }
 </style>
-
+    
     <nav class="navbar navbar-expand-sm navbar-dark fixed-top " style="background-color: #133A4B;">
         <div class="container-fluid">
             <div class="navbar-brand" href="javascript:void(0)"> <img src="~/imagenes/turno.jpg" alt="Logo" style="width:40px;" class="rounded-pill"> </div>
@@ -71,7 +71,7 @@
     <br /><br /><br />
                 <div class="container body-content">
 
-                    <div class="toast show infografia animate__animated animate__bounceInLeft">
+                    <div class="toast show infografia animate__animated animate__bounceInRight">
                         <div class="toast-header">
                             <strong class="me-auto"></strong>
                             <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
@@ -80,10 +80,7 @@
                             <a href="https://declaranet.puebla.gob.mx/" target="_blank"><img class="img-fluid" src="~/imagenes/infografia.jpg" width="280" /></a>
                         </div>
                     </div>
-                    @*<div class="infografia animate__animated animate__bounceInLeft">
-                        <img class="img-fluid" src="~/imagenes/infografia.jpg" width="280" />
-                    </div>*@
-
+                 
                     @RenderBody()
                     @{
                         string Area = "";
